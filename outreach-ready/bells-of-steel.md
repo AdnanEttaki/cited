@@ -18,8 +18,10 @@ The rest of the 5-question snapshot:
 - "Best adjustable dumbbells" → PowerBlock, Bowflex, NÜOBELL, with shopping
   cards attached. No BoS.
 - "Best Olympic barbell, not overpriced" → Strength Shop, Rogue. No BoS.
-- "Bells of Steel vs REP" → you do appear — and REP takes the default
-  recommendation.
+- "Bells of Steel vs REP" → you appear, and lose on both engines. ChatGPT
+  gives REP the overall nod; Perplexity says REP "offers better value for
+  most home gyms" — value. Your positioning, conceded to a competitor, in an
+  answer buyers read before checkout.
 
 Your content ranks on Google. But AI answers cite a specific review layer
 (Home Gym Reviews, Verywell Fit, liftranked...), and that's where the gap is.

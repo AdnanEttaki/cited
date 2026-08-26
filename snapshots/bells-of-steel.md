@@ -8,8 +8,8 @@
 ### Q1. "What's the best power rack for a home gym under $1,000?" — ❌ NOT CITED
 REP PR-4000 wins, Rogue RML-390F second, Titan T-3 third, Titan X-3 fourth. The Hydra/Manticore racks — BoS's flagship line in exactly this price band — never appear. Sources: Home Gym Reviews, liftranked, GearScout.
 
-### Q2. "Bells of Steel vs REP Fitness — which brand is better for a home gym?" — ⚠️ CITED, SPLIT
-REP gets the overall nod ("slight edge," better ecosystem and polish). BoS wins only the value frame. Even on their own comparison query, the default recommendation leans REP.
+### Q2. "Bells of Steel vs REP Fitness — which brand is better for a home gym?" — ⚠️ CITED, LOSES BOTH ENGINES
+ChatGPT gives REP the overall nod ("slight edge," better ecosystem and polish); BoS wins only the value frame. Perplexity (same question, same day) is worse: "REP Fitness generally offers better value for most home gyms... comparable to Bells of Steel in price but with more modern features and better overall ecosystem." Both engines cite the same review layer (homegymverdict et al.). BoS doesn't just lose its own comparison query — on Perplexity it loses it **on value**, which is the brand's entire positioning.
 
 ### Q3. "What are the best adjustable dumbbells for a small home gym?" — ❌ NOT CITED
 PowerBlock Elite EXP, Bowflex SelectTech 552, NÜOBELL 80 — all with shopping cards. BoS's adjustable dumbbell line isn't mentioned.
