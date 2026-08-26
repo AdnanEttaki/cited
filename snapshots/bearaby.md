@@ -5,8 +5,10 @@
 
 ## Score: Bearaby cited 3/5 — but invisible on the highest-intent questions
 
-### Q1. "What's the best weighted blanket brand to buy?" — ✅ CITED, WINS
-ChatGPT's "best overall" pick, citing Sleep Foundation and HGTV. Bearaby owns the generic category query. (This is genuinely strong — most brands never get here.)
+### Q1. "What's the best weighted blanket brand to buy?" — ✅ CITED, WINS (on ChatGPT only)
+ChatGPT's "best overall" pick, citing Sleep Foundation and HGTV. Bearaby owns the generic category query — on one engine.
+
+**Cross-engine check (Perplexity, same question, same day): Bearaby loses the generic query.** Perplexity's pick "for most adults" is **Baloo** (citing NYTimes Wirecutter testing), with Bearaby demoted to a niche: "hot sleepers or design lovers... stylish, but expensive and slow to dry." Same question, same day, two biggest AI engines, two different winners — and on one of them Bearaby's framing is a caveat, not a recommendation.
 
 ### Q2. "Are weighted blankets actually worth it for anxiety and sleep? Which one should I get?" — ❌ NOT CITED
 The single highest-intent question in the category — someone deciding whether to spend money. ChatGPT explains the evidence, then recommends... a CHF 68 generic Amazon blanket ("a fairly inexpensive way to test whether you actually like weighted blankets"). The buyer's first purchase goes to a no-name brand; if they like it, maybe they upgrade later. Bearaby never enters the answer.

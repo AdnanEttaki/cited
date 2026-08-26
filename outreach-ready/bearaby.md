@@ -9,8 +9,11 @@ Hi team,
 
 I ran 5 questions your buyers ask through ChatGPT before writing this.
 
-Good news first: on "best weighted blanket brand," you're the top pick —
-Sleep Foundation citations, the works. Same on "Bearaby vs Gravity."
+Good news first: on "best weighted blanket brand," you're ChatGPT's top
+pick — Sleep Foundation citations, the works. But ask Perplexity the same
+question and the winner is **Baloo**; Bearaby is demoted to a niche ("hot
+sleepers or design lovers... expensive and slow to dry"). Two engines, two
+winners — and you only own one.
 
 But on "are weighted blankets worth it for anxiety — which one should I get,"
 ChatGPT recommends a CHF 68 generic Amazon blanket, and Bearaby never appears.
