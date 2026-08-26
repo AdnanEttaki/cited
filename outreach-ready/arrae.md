@@ -15,6 +15,11 @@ ingredients sit in a 1,080-mg proprietary blend (citing the NIH label
 database), so doses can't be verified. Your 86% study is dismissed as a
 "company-reported product claim."
 
+Perplexity is kinder — it credits peppermint and ginger — but lands on the
+same frame: effects "not as dramatic or universal as the marketing suggests."
+Two engines, same story. That's not bad luck; it's what your current
+citation record produces.
+
 Every skeptical buyer asks some version of this right before a $55 purchase.
 
 The rest of the snapshot: on "best supplement for bloating" and "best
