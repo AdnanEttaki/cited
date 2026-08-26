@@ -14,6 +14,12 @@ trials and a Cornell study, and Sundays — quoting the answer — "has not yet
 published peer-reviewed studies." The sources it cited were your own help
 center and the NAD review.
 
+Then I asked Perplexity the same question — and got the OPPOSITE verdict:
+Sundays wins, "better value for most dogs." The two biggest AI engines
+contradict each other on your most important comparison query, from
+completely different source pools. Which engine your buyer asks decides which
+brand they buy — and right now Sundays controls neither narrative.
+
 On the four other buyer questions ("healthiest dog food brand", "fresh food
 worth it", "sensitive stomach", "best air-dried brands"), Sundays appeared
 once — third, behind ZIWI and Open Farm, in the category you should own.

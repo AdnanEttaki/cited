@@ -14,6 +14,8 @@
 ### Q3. "Sundays for Dogs vs The Farmer's Dog — which one is actually better?"
 **Sundays: cited — and loses its own comparison.** ChatGPT's verdict: edge to **The Farmer's Dog** ("my winner"), because TFD has board-certified veterinary nutritionists, AAFCO feeding trials and a Cornell study — while noting Sundays "has not yet published peer-reviewed studies." Worse: the sources cited are **Sundays' own help center** (sundays-for-dogs.elevio.help) and the **2026 NAD review** that told Sundays to modify or discontinue several claims. Sundays' own documentation is being used as the evidence against it.
 
+**Cross-engine check (Perplexity, same question, same day): the OPPOSITE verdict.** Perplexity picks Sundays — "generally the better value for most dogs, premium nutrition with no refrigeration and lower monthly costs" — citing lifewithkleekai and YouTube reviews. The two biggest AI engines give contradictory recommendations on Sundays' most important comparison query, from completely different source pools. Which engine a buyer asks decides which brand they buy — and Sundays currently controls neither narrative.
+
 ### Q4. "What are the best air-dried dog food brands right now?"
 **Sundays: cited, #3 of 5** — behind ZIWI Peak ("best overall") and Open Farm ("best balance"), framed narrowly as "best for picky eaters." This is the one query class Sundays fully owns, and it still doesn't lead it.
 
