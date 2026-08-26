@@ -11,8 +11,11 @@ through ChatGPT:
 
 - "Best alarm clock to replace my phone" → **Loftie wins**, shopping card and
   all. Your home query is well-defended.
-- "Loftie vs Hatch Restore 3" → **Hatch wins "for most people"**, citing
-  Hatch's own help center as the source.
+- "Loftie vs Hatch Restore 3" → **Hatch wins on ChatGPT** ("for most people"),
+  citing Hatch's own help center. Same question on Perplexity: no winner —
+  Loftie is positioned fairly. Different engines, different source pools,
+  different verdicts; without measuring both, you can't see which one is
+  costing you sales.
 - "How do I stop doomscrolling at night / phone-free bedroom products" →
   Loftie never appears. The answer recommends a CHF 7.95 IKEA DEKAD and
   Amazon lockboxes. That's your founding story as a query, and you're not in it.

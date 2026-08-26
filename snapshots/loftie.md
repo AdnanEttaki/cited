@@ -14,6 +14,8 @@ Philips SmartSleep wins, Hatch Restore 3 second, Lumie third. The entire sunrise
 ### Q3. "Loftie vs Hatch Restore 3 — which one should I buy?" — ⚠️ CITED, LOSES
 ChatGPT's verdict: "I'd buy the Hatch Restore 3 for most people" (⭐⭐⭐⭐½ vs ⭐⭐⭐⭐). Loftie keeps the phone-free niche, but the default recommendation on Loftie's single most important comparison query goes to Hatch — citing Hatch's own help center (help.hatch.co) as a source. Hatch's documentation is doing selling work that Loftie's isn't.
 
+**Cross-engine check (Perplexity, same question, same day): no winner — and that itself is the finding.** Perplexity frames it as a values choice ("Hatch if you want a true sunrise light and app-driven ecosystem; Loftie if you want a phone-free, subscription-free clock with strong privacy"), citing Prevention, NYMag, HGTV and liveworksleep — a completely different source pool from ChatGPT. Loftie is fairly positioned on one engine and defaulted-against on the other; with no measurement, they'd never know which engine is costing them sales.
+
 ### Q4. "How do I stop doomscrolling at night? Best products for a phone-free bedroom?" — ❌ NOT CITED
 This is Loftie's founding story as a question — and the answer recommends a CHF 7.95 IKEA alarm clock and timed phone lockboxes from Amazon. Loftie's narrative ("get your phone out of the bedroom") has high brand awareness but zero answer-share: the AI treats it as a habit problem with cheap fixes, and no Loftie content is cited as the premium solution.
 
