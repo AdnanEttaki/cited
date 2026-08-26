@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cited — AI Visibility Audit for E-commerce Brands</title>
+<meta name="description" content="Find out which buyer questions ChatGPT, Perplexity, Gemini and Google AI Overviews answer with your competitors instead of you. Fixed-price audit, 5-day delivery, no retainer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0d0b; --panel:#131613; --line:#262b26; --ink:#e8ebe6; --dim:#9aa398;
+    --accent:#c8f04b; --accent-ink:#0b0d0b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  h1,h2,.serif{font-family:Newsreader,Georgia,serif;font-weight:500;letter-spacing:-.01em}
+  a{color:inherit}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:10;background:rgba(11,13,11,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-family:Newsreader,serif;font-size:24px;font-weight:600}
+  .logo em{color:var(--accent);font-style:normal}
+  .btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:15px;
+       padding:12px 22px;border-radius:8px;text-decoration:none;transition:transform .15s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn.small{padding:9px 16px;font-size:14px}
+
+  /* hero */
+  .hero{padding:110px 0 80px;text-align:center}
+  .eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+           color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:6px 14px;margin-bottom:28px}
+  .hero h1{font-size:clamp(40px,6.2vw,72px);line-height:1.08;margin-bottom:24px}
+  .hero h1 em{color:var(--accent);font-style:italic}
+  .hero p{max-width:640px;margin:0 auto 36px;font-size:19px;color:var(--dim)}
+  .hero .note{margin-top:16px;font-size:14px;color:var(--dim)}
+
+  /* stats */
+  .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .stat{padding:40px 28px;border-left:1px solid var(--line)}
+  .stat:first-child{border-left:none}
+  .stat b{display:block;font-family:Newsreader,serif;font-size:44px;font-weight:600;color:var(--accent);line-height:1.1}
+  .stat span{font-size:14px;color:var(--dim)}
+  .stat a{color:var(--dim);text-decoration:underline;text-underline-offset:3px}
+  @media(max-width:760px){.stats .wrap{grid-template-columns:1fr}.stat{border-left:none;border-top:1px solid var(--line)}.stat:first-child{border-top:none}}
+
+  section{padding:90px 0}
+  .kicker{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h2{font-size:clamp(30px,4vw,46px);line-height:1.15;margin-bottom:20px}
+  .lead{font-size:18px;color:var(--dim);max-width:680px}
+
+  /* deliverables */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px}
+  .card h3{font-size:18px;margin-bottom:8px;font-weight:600}
+  .card p{font-size:15px;color:var(--dim)}
+  .card .num{font-family:Newsreader,serif;color:var(--accent);font-size:15px;display:block;margin-bottom:10px}
+
+  /* process */
+  .steps{margin-top:44px;border-top:1px solid var(--line)}
+  .step{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line)}
+  .step .day{font-family:Newsreader,serif;font-size:22px;color:var(--accent)}
+  .step h3{font-size:17px;font-weight:600;margin-bottom:4px}
+  .step p{font-size:15px;color:var(--dim)}
+
+  /* pricing */
+  .price-box{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:48px;margin-top:44px;
+             display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+  @media(max-width:860px){.price-box{grid-template-columns:1fr;padding:32px}}
+  .price{font-family:Newsreader,serif;font-size:64px;font-weight:600;line-height:1}
+  .price small{font-size:18px;color:var(--dim);font-family:Inter,sans-serif;font-weight:400;display:block;margin-top:8px}
+  .price-box ul{list-style:none;margin:20px 0 28px}
+  .price-box li{padding:7px 0 7px 26px;position:relative;font-size:15px;color:var(--dim)}
+  .price-box li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+  .compare{font-size:14px;color:var(--dim);border-top:1px solid var(--line);padding-top:18px;margin-top:6px}
+
+  /* faq */
+  details{border-bottom:1px solid var(--line);padding:22px 0}
+  summary{cursor:pointer;font-size:17px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  summary::after{content:"+";color:var(--accent);font-size:22px;font-weight:400}
+  details[open] summary::after{content:"–"}
+  details p{margin-top:12px;color:var(--dim);font-size:15px;max-width:720px}
+
+  /* about / footer */
+  .about{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:start}
+  @media(max-width:760px){.about{grid-template-columns:1fr}}
+  .final{text-align:center;padding:100px 0}
+  .final h2{margin-bottom:16px}
+  footer{border-top:1px solid var(--line);padding:32px 0;font-size:13px;color:var(--dim)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="logo">Cited<em>.</em></span>
+    <a class="btn small" href="mailto:adnanettaki6@gmail.com?subject=AI%20Visibility%20Audit%20—%20my%20store&body=Hi%20Adnan%2C%0A%0AStore%20URL%3A%20%0AOur%203%20main%20competitors%3A%20%0AWhat%20we%20sell%3A%20%0A%0AWe%27d%20like%20the%20%24950%20AI%20Visibility%20Audit.">Get your audit</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">AI Visibility Audit for E-commerce</span>
+    <h1>When customers ask AI what to buy, it names <em>your competitor.</em></h1>
+    <p>Shoppers have moved from search bars to chat boxes. Cited shows you exactly which buying questions ChatGPT, Perplexity, Gemini and Google AI Overviews answer without you — and the page-by-page fix list to change it. Flat fee. Five days. No retainer.</p>
+    <a class="btn" href="mailto:adnanettaki6@gmail.com?subject=AI%20Visibility%20Audit%20—%20my%20store&body=Hi%20Adnan%2C%0A%0AStore%20URL%3A%20%0AOur%203%20main%20competitors%3A%20%0AWhat%20we%20sell%3A%20%0A%0AWe%27d%20like%20the%20%24950%20AI%20Visibility%20Audit.">Start your audit — $950</a>
+    <div class="note">Not sure yet? Reply with your store URL and get a free 5-question visibility snapshot first.</div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b>40%</b><span>of businesses report search traffic decline as buyers shift to AI-assisted research (<a href="https://www.wordstream.com/wp-content/uploads/2025/11/ws-guide-smb-website-trends.pdf" target="_blank" rel="noopener">WordStream, 2025</a>)</span></div>
+    <div class="stat"><b>15.9%</b><span>conversion rate of ChatGPT referral traffic — vs 1.76% for classic organic search (<a href="https://www.llmreach.ai/blog/ai-visibility-geo-cost-2026" target="_blank" rel="noopener">Seer Interactive data</a>)</span></div>
+    <div class="stat"><b>+393%</b><span>year-over-year growth in AI-referred traffic to retail sites (<a href="https://thestacc.com/blog/ecommerce-seo-after-ai-overviews/" target="_blank" rel="noopener">Adobe, 2025</a>)</span></div>
+  </div>
+</div>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="kicker">The problem</div>
+    <h2>You can't fix what you can't see.</h2>
+    <p class="lead">There is no Search Console for ChatGPT. No impressions, no positions, no click-through rates. Your traffic dips, your agency shrugs, and meanwhile an AI answer engine is quietly telling your future customers which three brands to consider — and you're not one of them. The first step isn't "more content." It's knowing exactly where you stand.</p>
+  </div>
+</section>
+
+<section id="audit" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kicker">The deliverable</div>
+    <h2>One audit. Everything on the table.</h2>
+    <p class="lead">Not a PDF of vague best practices — a measured baseline of your AI visibility, run against the questions your buyers actually ask.</p>
+    <div class="cards">
+      <div class="card"><span class="num">01</span><h3>Citation baseline — 50 buyer questions</h3><p>We run 50 real purchase-intent questions for your category ("best carry-on for weekend trips", "is X better than Y") through ChatGPT, Perplexity, Gemini and Google AI Overviews, and record exactly when you're cited, when competitors are, and when nobody is.</p></div>
+      <div class="card"><span class="num">02</span><h3>Competitor citation map</h3><p>Which rivals the AI engines trust, which sources they learned it from — reviews, Reddit threads, listicles, YouTube — and why those sources outrank your own pages as evidence.</p></div>
+      <div class="card"><span class="num">03</span><h3>Page-by-page fix list</h3><p>Concrete changes per page: missing schema, unanswered questions, thin comparison content, absent llms.txt, product-feed gaps, citation-worthy claims you make nowhere. Each fix ranked by expected impact.</p></div>
+      <div class="card"><span class="num">04</span><h3>30-day action plan + walkthrough</h3><p>A prioritized one-month plan your team (or ours) can execute, plus a 30-minute call to walk through every finding. The report is yours — no retainer required to use it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="kicker">How it works</div>
+    <h2>Five days, start to finish.</h2>
+    <div class="steps">
+      <div class="step"><span class="day">Day 1</span><div><h3>Intake</h3><p>You send your store URL, three competitors, and your hero products. We confirm scope and payment the same day.</p></div></div>
+      <div class="step"><span class="day">Days 2–4</span><div><h3>Query &amp; crawl</h3><p>We build your 50-question set from real buyer language, run it across the four AI engines, and crawl your site and your competitors' for the evidence layer.</p></div></div>
+      <div class="step"><span class="day">Day 5</span><div><h3>Report + call</h3><p>You get the full audit — baseline, competitor map, fix list, 30-day plan — and a 30-minute walkthrough call. Questions answered live.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="kicker">Pricing</div>
+    <h2>Flat fee. No retainer trap.</h2>
+    <div class="price-box">
+      <div>
+        <div class="price">$950<small>one-time · 5-day delivery · card or PayPal</small></div>
+        <p class="compare">Agencies charge $3,000–$15,000 for AI-visibility audits, or lock you into $2,000–$8,000/month retainers with 3–6 month minimums. Cited is one audit, one fee, yours to keep. If you want help implementing afterward, monthly sprints are available — never required.</p>
+      </div>
+      <div>
+        <ul>
+          <li>50-question citation baseline across 4 AI engines</li>
+          <li>Competitor citation map with source evidence</li>
+          <li>Page-by-page fix list, ranked by impact</li>
+          <li>30-day prioritized action plan</li>
+          <li>30-minute walkthrough call</li>
+        </ul>
+        <a class="btn" href="mailto:adnanettaki6@gmail.com?subject=AI%20Visibility%20Audit%20—%20my%20store&body=Hi%20Adnan%2C%0A%0AStore%20URL%3A%20%0AOur%203%20main%20competitors%3A%20%0AWhat%20we%20sell%3A%20%0A%0AWe%27d%20like%20the%20%24950%20AI%20Visibility%20Audit.">Start your audit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="kicker">FAQ</div>
+    <h2>Fair questions.</h2>
+    <details><summary>Is this just SEO with a new label?</summary><p>No. Classic SEO optimizes for ranked links; AI engines cite sources inside generated answers. The inputs overlap — structure, authority, clarity — but the measurement is completely different. The core of this audit is the citation baseline: direct evidence of what AI engines actually say when buyers ask about your category. No rankings talk, no keyword-stuffing advice.</p></details>
+    <details><summary>How do you measure AI citations if answers change?</summary><p>By sampling honestly. We run each question multiple times per engine, record citation rates rather than single answers, and report the spread. AI answers are probabilistic — anyone promising "guaranteed citations" is lying. What we can show you precisely is where you stand today and which specific gaps the evidence points to.</p></details>
+    <details><summary>What if the audit finds nothing wrong?</summary><p>Then you get documented proof that AI engines already cite you for your category's buying questions — which is worth knowing before you spend on anything else. It's never happened yet, but if it does, we'll say so plainly.</p></details>
+    <details><summary>Who implements the fixes?</summary><p>Anyone can — the fix list is written for a developer or marketer to execute directly. If you want us to implement, monthly sprints start at $2,500/month with no long-term contract. Most clients start with the audit and decide after they've seen it.</p></details>
+    <details><summary>Who's behind Cited?</summary><p>Cited is run by Adnan Ettaki, an e-commerce operator who builds and runs his own Shopify brands — and hit the AI-visibility wall on his own stores first. The audit methodology is the same process he built to fix it.</p></details>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Your buyers are asking AI right now.</h2>
+    <p class="lead" style="margin:0 auto 36px">Find out what it tells them — before your competitors do.</p>
+    <a class="btn" href="mailto:adnanettaki6@gmail.com?subject=AI%20Visibility%20Audit%20—%20my%20store&body=Hi%20Adnan%2C%0A%0AStore%20URL%3A%20%0AOur%203%20main%20competitors%3A%20%0AWhat%20we%20sell%3A%20%0A%0AWe%27d%20like%20the%20%24950%20AI%20Visibility%20Audit.">Start your audit — $950</a>
+    <div class="note" style="margin-top:16px;font-size:14px;color:var(--dim)">Or send your store URL for a free 5-question visibility snapshot.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="logo" style="font-size:18px">Cited<em>.</em></span>
+    <span>AI Visibility Audits for e-commerce brands · <a href="mailto:adnanettaki6@gmail.com" style="text-decoration:underline">adnanettaki6@gmail.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
