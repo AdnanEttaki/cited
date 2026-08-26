@@ -23,8 +23,21 @@ Templates live in `cited/outreach-templates.md`. Approve/edit them, then:
   IDE but not reachable from this CLI) and I'll send + track them for you.
 
 ## 3. Prospect list
-Being compiled in `cited/prospects.md` (25 verified DTC brands with contact
-paths). First-5 priorities will be flagged.
+`cited/prospects.md` — 25 verified DTC brands with real contact emails.
+Top-5 flagged: Loftie, Sundays for Dogs, Arrae, Bells of Steel, Bearaby.
+Per-brand ready-to-send emails: `cited/outreach-ready/*.md`.
+10 live sample audits to link in pitches: https://adnanettaki.github.io/cited/
+
+## 3b. Marketplace gigs (new — paste-ready)
+`cited/gig-copy.md` — Fiverr gig (title, packages $250/$950/$2,500, FAQ,
+image brief) and Upwork profile + proposal template. You create the accounts
+(they require phone/ID); everything to paste is written.
+
+## 3c. Reddit / Indie Hackers playbook (new — paste-ready)
+`cited/reddit-playbook.md` — which subs to watch, 4 reply templates for the
+weekly "traffic dropped / how do I rank in ChatGPT" posts, and a
+build-in-public post that leads with the 10 audit findings and offers 3 free
+snapshots. You post them from your own account.
 
 ## 4. Optional upgrades (all free)
 - Custom domain later (~$12/yr — needs your OK per the no-spending rule)
