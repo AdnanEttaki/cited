@@ -72,6 +72,11 @@ keep it short — the first email carried the detail.
 - **Great Jones** — Your identity query, "design-forward kitchenware,"
   returns Alessi, HAY, Ferm Living, and Caraway — not you. The engines file
   you under "Dutch oven alternative," which is the smallest shelf you sit on.
+- **Apothékary** — On your head-to-head, ChatGPT sides with Moon Juice
+  because they publish standardized-exact specs (10% withanolides) and the
+  engine reads that as rigor. Meanwhile the skeptic answer on tinctures
+  quotes "adaptogenic… balances cortisol" as the textbook marketing red
+  flag. The category's frame is being written without you in it.
 
 ## Rules
 
