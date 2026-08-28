@@ -77,6 +77,11 @@ keep it short — the first email carried the detail.
   engine reads that as rigor. Meanwhile the skeptic answer on tinctures
   quotes "adaptogenic… balances cortisol" as the textbook marketing red
   flag. The category's frame is being written without you in it.
+- **Sabai** — The 10–15-year sofa answer is built from warranty
+  documentation — Rolf Benz and de Sede win on a 10-year warranty *page*.
+  Your repair-for-life model beats that substantively, but it's not packaged
+  in the crawlable form the engines cite. Also: asked from Europe, you're
+  structurally invisible — worth knowing before any UK/EU expansion.
 
 ## Rules
 

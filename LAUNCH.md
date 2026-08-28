@@ -4,15 +4,25 @@ The business is built and live. These items need your accounts/credentials.
 Each takes ~5–10 minutes.
 
 ## 1. Payment rails (highest priority — this is what blocks "checkout")
-The page currently books via email intake (mailto CTA with a pre-filled
-intake form). To accept card payments directly:
+Full plan in `cited/STRIPE-PLAN.md`. Two routes now:
 
+**Route A (new, fastest):** the Stripe MCP server is configured in this CLI
+(`~/.kimi-code/mcp.json`). Restart the CLI — it will prompt you to
+authenticate Stripe (OAuth in browser). Once connected, I create the 3
+products + payment links ($250 / $950 / $2,500) myself and swap the site
+CTAs in the same session. The `/paid.html` post-payment intake page is
+already built and deployed.
+
+**Route B (manual, ~10 min):**
 1. Create/login at https://stripe.com (free, no monthly fee)
-2. Products → Add product: "AI Visibility Audit", one-time $950
-3. Create a **Payment Link** for it
-4. Send me the link (or add it yourself) — I'll swap every
-   `mailto:adnanettaki6@gmail.com?...Start your audit` CTA on the page for
-   the Stripe link (5 small edits in `cited/index.html`, then push)
+2. Products → Add: "AI Visibility Audit", one-time $950 (optionally also
+   $250 Snapshot and $2,500 Audit+Sprint — see gig packages)
+3. Create a **Payment Link** per product, set the after-payment redirect to
+   https://adnanettaki.github.io/cited/paid.html
+4. Send me the link(s) — I'll swap every
+   `mailto:adnanettaki6@gmail.com?...Start your audit` CTA on the page
+
+Do NOT enable Stripe Tax / automatic_tax yet — see STRIPE-PLAN.md tax note.
 
 PayPal alternative: create a paypal.me link and I'll add it as a second option.
 
