@@ -1,5 +1,6 @@
 // Frame-accurate renderer: drives composition.html in Chromium and encodes with ffmpeg.
 // Usage: node render.mjs <project_dir> <format: 916|11|both> [--preview t1,t2,...] [--workers N]
+//        [--hook storm|slam|macro|none] [--clip a,b --name label]  (clip = time range with the mix audio, for quick reviews)
 import { createRequire } from 'node:module';
 const { chromium } = createRequire(import.meta.url)('playwright');
 import { spawn, execFileSync } from 'node:child_process';
@@ -12,8 +13,14 @@ const [projDir, fmtArg = 'both', ...rest] = process.argv.slice(2);
 const opt = (k, d) => { const i = rest.indexOf(k); return i >= 0 ? rest[i + 1] : d; };
 const preview = opt('--preview', null);
 const WORKERS = +opt('--workers', 4);
+const clip = opt('--clip', null);
+const clipName = opt('--name', 'clip');
 
 const T = JSON.parse(fs.readFileSync(path.join(projDir, 'timeline.json'), 'utf8'));
+const hookArg = opt('--hook', null);
+if (hookArg) T.hook = { mode: hookArg };
+if (T.hook && (T.hook.mode === 'slam' || T.hook.mode === 'macro') && T.hookPop)
+  (T.pops = T.pops || []).unshift({ ...T.hookPop, t0: T.hook.mode === 'macro' ? -0.05 : 0.22, enter: T.hook.mode === 'macro' ? 'macro' : 'burst' });
 const build = path.join(here, 'build');
 const framesDir = path.join(build, 'frames');
 const nRaw = fs.readdirSync(framesDir).filter(f => f.endsWith('.jpg')).length;
@@ -45,6 +52,8 @@ const LAYOUTS = {
     cap: { glass: true, style: { left: '50%', top: '1712px', transform: 'translateX(-50%)', fontSize: '40px', whiteSpace: 'nowrap' } },
     label: { left: '50%', top: '120px', transform: 'translateX(-50%)' },
     end: { serif: 110, sans: 200, btn: 44, sub: 22 },
+    pop: { w: 820, font: 48, shift: 20 },
+    storm: { n: 16, w: 600, font: 30 },
   },
   11: {
     W: 1080, H: 1080, frameInset: 26,
@@ -53,6 +62,8 @@ const LAYOUTS = {
     cap: { glass: false, style: { left: '64px', top: '890px', width: '350px', fontSize: '34px', lineHeight: '1.25' } },
     label: { left: '64px', top: '78px' },
     end: { serif: 84, sans: 160, btn: 36, sub: 18 },
+    pop: { w: 560, font: 34, shift: 10 },
+    storm: { n: 14, w: 440, font: 23 },
   },
 };
 
@@ -76,9 +87,10 @@ async function renderFormat(browser, fmt) {
     }
     await page.close(); return;
   }
-  const total = Math.round(T.duration * T.fps), per = Math.ceil(total / WORKERS);
+  const [ca, cb] = clip ? clip.split(',').map(Number) : [0, T.duration];
+  const f0 = Math.round(ca * T.fps), total = Math.round(cb * T.fps) - f0, per = Math.ceil(total / WORKERS);
   const segs = await Promise.all([...Array(WORKERS)].map(async (_, w) => {
-    const a = w * per, b = Math.min(total, a + per); const seg = path.join(build, `seg_${fmt}_${w}.mp4`);
+    const a = f0 + w * per, b = f0 + Math.min(total, (w + 1) * per); const seg = path.join(build, `seg_${fmt}_${w}.mp4`);
     const page = await openPage(browser, L);
     const ff = spawn('ffmpeg', ['-v', 'error', '-y', '-f', 'image2pipe', '-framerate', String(T.fps), '-c:v', 'mjpeg', '-i', '-',
       '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-tune', 'film', '-pix_fmt', 'yuv420p', seg], { stdio: ['pipe', 'inherit', 'inherit'] });
@@ -94,9 +106,14 @@ async function renderFormat(browser, fmt) {
   }));
   const list = path.join(build, `segs_${fmt}.txt`);
   fs.writeFileSync(list, segs.map(s => `file '${s}'`).join('\n'));
-  const silent = path.join(build, `video_${fmt}.mp4`);
+  const silent = path.join(build, clip ? `clip_${fmt}.mp4` : `video_${fmt}.mp4`);
   execFileSync('ffmpeg', ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', list, '-c', 'copy', silent]);
-  console.log('video ->', silent);
+  if (clip) {
+    const out = path.join(outDir, `${clipName}_${fmt === '916' ? '9x16' : '1x1'}.mp4`);
+    execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', silent, '-ss', String(ca), '-t', String(cb - ca), '-i', path.join(build, 'mix.m4a'),
+      '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-shortest', '-movflags', '+faststart', out]);
+    console.log('clip ->', out);
+  } else console.log('video ->', silent);
 }
 
 const browser = await chromium.launch();

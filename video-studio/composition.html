@@ -37,14 +37,32 @@ html,body{background:var(--abyss);overflow:hidden}
 #end .sub{font-size:22px;letter-spacing:.34em;color:var(--platinum);text-transform:uppercase}
 #btn{position:relative;overflow:hidden;margin-top:46px;background:var(--electric);color:#fff;border-radius:999px;font-weight:700;letter-spacing:.06em;box-shadow:0 20px 60px rgba(0,105,255,.45),inset 0 1px 0 rgba(255,255,255,.35);white-space:nowrap}
 #btn em{position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);background-size:300% 100%}
+#fx{pointer-events:none}
+.pop{position:absolute;left:0;top:0;border-radius:1.05em;padding:.72em .95em;font-weight:500;line-height:1.3;color:#fff;transform-origin:50% 50%;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.08)}
+.pop.lead{background:linear-gradient(135deg,#1E6BFF 0%,#5B46F2 60%,#7A3BEF 100%);box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 80px rgba(30,107,255,.45)}
+.pop.ai{background:linear-gradient(160deg,#2B2F38,#1E2128);border:1px solid rgba(201,211,227,.2)}
+.pop .who{position:absolute;top:-2.1em;left:.3em;font-size:.4em;letter-spacing:.34em;text-transform:uppercase;color:var(--platinum);font-weight:600;display:flex;gap:.7em;align-items:center;white-space:nowrap}
+.pop .who i{width:.7em;height:.7em;border-radius:50%;background:var(--electric);box-shadow:0 0 12px var(--glow)}
+.pop mark{background-color:transparent;color:inherit;font-weight:700;border-radius:.18em;padding:0 .1em;background-repeat:no-repeat;background-size:0% 100%}
+.pop.lead mark{background-image:linear-gradient(rgba(255,255,255,.3),rgba(255,255,255,.3))}
+.pop.ai mark{background-image:linear-gradient(rgba(0,105,255,.75),rgba(0,105,255,.75))}
+.notif{position:absolute;left:0;top:0;display:flex;gap:.7em;align-items:center;padding:.7em .9em;border-radius:1.1em;background:rgba(28,38,58,.72);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.14);box-shadow:0 20px 50px rgba(0,0,0,.5);color:#fff}
+.notif .app{width:2.1em;height:2.1em;border-radius:.6em;flex:none;background:linear-gradient(135deg,#3D8BFF,#7A3BEF)}
+.notif .ttl{font-weight:700;font-size:.82em;opacity:.85}.notif .ttl span{font-weight:400;opacity:.6;margin-left:.5em}
+.notif .msg{font-weight:500}
+.notif.done{border-color:rgba(61,139,255,.9);box-shadow:0 0 40px rgba(0,105,255,.6)}
+.badge{position:absolute;left:0;top:0;min-width:2.6em;height:2.6em;padding:0 .6em;border-radius:1.3em;background:#FF3B5C;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 40px rgba(255,59,92,.55)}
+.badge.zero{background:var(--electric);box-shadow:0 10px 40px rgba(0,105,255,.7)}
 </style></head>
 <body><div id="stage">
   <div class="layer" id="bg"></div>
   <div class="layer" id="orbs"></div>
   <div id="win"><img id="ph"><div id="sheen"></div></div>
+  <div class="layer" id="fx"></div>
   <div id="type"></div>
   <div id="cap"></div>
   <div class="layer" id="end"></div>
+  <canvas class="layer" id="burst"></canvas>
   <div class="layer" id="flash"></div>
   <div class="layer" id="vignette"></div>
   <div class="layer" id="grain"></div>
@@ -52,6 +70,7 @@ html,body{background:var(--abyss);overflow:hidden}
   <div id="label"><i></i><span></span></div>
   <div id="progress"></div>
 </div>
+<script src="fx.js"></script>
 <script>
 // ---------- easing ----------
 const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
@@ -102,8 +121,7 @@ window.setup=async(timeline,layout)=>{
   await document.fonts.ready;
   // fit lines to width
   T.beats.forEach(b=>b.el.querySelectorAll('.ln').forEach(ln=>{const s=ln.firstElementChild;const max=L.type.w;const w=s.getBoundingClientRect().width;if(w>max)ln.style.fontSize=parseFloat(ln.style.fontSize)*max/w+'px'}));
-  // caption chunks
-  T.chunks.forEach(ch=>{});
+  await FX.setup(T,L,$);
 };
 
 function camAt(t){
@@ -126,10 +144,11 @@ window.render=async(t,src)=>{
   $.ph.style.width=cw+'px';$.ph.style.height=chh+'px';$.ph.style.transform=`translate(${tx}px,${ty}px)`;
   // window intro / outro
   const inP=expoOut(prog(t,T.introAt??0,0.9)),outP=quintInOut(prog(t,T.end.at-0.1,0.7));
-  const ws=lerp(0.92,1,inP)*lerp(1,0.86,outP);
-  $.win.style.transform=`translateY(${lerp(60,0,inP)+lerp(0,40,outP)}px) scale(${ws})`;
-  $.win.style.opacity=Math.min(inP,1-outP);
-  $.win.style.filter=`blur(${outP*14}px)`;
+  const m=FX.win(t),iP=m.override?1:inP;
+  const ws=lerp(0.92,1,iP)*lerp(1,0.86,outP)*m.s;
+  $.win.style.transform=`perspective(2400px) translate(${m.tx}px,${lerp(60,0,iP)+lerp(0,40,outP)+m.ty}px) rotateX(${m.rx}deg) rotateY(${m.ry}deg) rotate(${m.rot}deg) scale(${ws})`;
+  $.win.style.opacity=Math.min(iP,1-outP)*m.op;
+  $.win.style.filter=`blur(${outP*14+m.blur}px) brightness(${m.dim})`;
   $.sheen.style.backgroundPosition=`${lerp(150,-50,((t%7)/7))}% 0`;
   // orbs
   const o1=document.getElementById('o1'),o2=document.getElementById('o2');
@@ -176,5 +195,6 @@ window.render=async(t,src)=>{
     const hp=expoOut(prog(t,e.buttonAt+0.4,0.8));$.end.querySelector('.hair').style.transform=`scaleX(${hp})`;
     $.end.querySelector('.sub').style.opacity=hp;
   }
+  FX.render(t);
 };
 </script></body></html>

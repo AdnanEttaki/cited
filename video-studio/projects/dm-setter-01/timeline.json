@@ -590,5 +590,109 @@
   "gain": -20,
   "duckTo": -30
  },
- "introAt": -0.5
+ "introAt": -0.5,
+ "hook": {
+  "mode": "storm"
+ },
+ "hookPop": {
+  "t1": 1.95,
+  "side": "lead",
+  "text": "can you at least tell me if it's more like $50/month or $500/month?",
+  "hl": [
+   "$500/month?"
+  ]
+ },
+ "pops": [
+  {
+   "t0": 9.25,
+   "t1": 10.85,
+   "side": "lead",
+   "text": "am I actually talking to a real person right now or is this an AI/bot replying to me?",
+   "hl": [
+    "real person",
+    "AI/bot"
+   ]
+  },
+  {
+   "t0": 10.95,
+   "t1": 12.3,
+   "side": "ai",
+   "text": "I'm Jake's AI assistant handling his DMs, and Jake takes over on the call.",
+   "hl": [
+    "AI assistant"
+   ]
+  },
+  {
+   "t0": 16.0,
+   "t1": 17.45,
+   "side": "lead",
+   "text": "can you at least tell me if it's more like $50/month or $500/month?",
+   "hl": [
+    "$50/month",
+    "$500/month?"
+   ]
+  },
+  {
+   "t0": 18.55,
+   "t1": 21.3,
+   "side": "ai",
+   "text": "Totally fair question, it's definitely not a $50 a month thing. Jake covers the details on the call\u2026",
+   "hl": [
+    "definitely not a $50 a month thing"
+   ]
+  },
+  {
+   "t0": 33.0,
+   "t1": 34.5,
+   "side": "lead",
+   "text": "3:00 PM works for me",
+   "hl": [
+    "3:00 PM"
+   ]
+  },
+  {
+   "t0": 40.25,
+   "t1": 42.3,
+   "side": "ai",
+   "text": "Done, you're booked for Monday, October 26 at 3:00 PM Swiss time.",
+   "hl": [
+    "you're booked"
+   ]
+  }
+ ],
+ "shakes": [
+  [
+   0.12,
+   16
+  ],
+  [
+   16.89,
+   7
+  ],
+  [
+   38.2,
+   12
+  ],
+  [
+   45.6,
+   9
+  ]
+ ],
+ "bursts": [
+  {
+   "at": 0.12,
+   "ring": true
+  },
+  {
+   "at": 38.2,
+   "ring": true,
+   "sparks": true
+  },
+  {
+   "at": 45.6,
+   "ring": true,
+   "sparks": true,
+   "el": "btn"
+  }
+ ]
 }
