@@ -1,9 +1,15 @@
 [
- {"id":"hook","at":0.25,"text":"This lead asked for the price. My AI didn't flinch."},
- {"id":"notme","at":4.2,"text":"Every message you're seeing? Not me. It's my AI setter, replying in seconds, twenty-four seven."},
- {"id":"objection","at":15.6,"text":"They push for a number. Watch. No dodging, no discount. It qualifies them."},
+ {"id":"hook","at":0.2,"text":"This lead asked for the price. My AI didn't flinch."},
+ {"id":"notme","at":4.15,"text":"Every reply here? Not me. My AI setter. Twenty-four seven."},
+ {"id":"bot","at":8.75,"text":"They even asked, is this a bot? It told the truth... and kept them talking."},
+ {"id":"objection","at":15.5,"text":"Now they push for a number. Watch. No dodging, no discount. It qualifies them."},
+ {"id":"close","at":21.6,"text":"Then it goes for the close."},
  {"id":"tz","at":23.9,"text":"Time zone checked."},
- {"id":"slots","at":28.5,"text":"Slots offered."},
- {"id":"booked","at":33.0,"text":"Call booked."},
- {"id":"cta","at":40.4,"text":"No setter salary. No missed leads. Want one in your DMs? Comment SETTER."}
+ {"id":"nbf","at":25.9,"text":"No back and forth."},
+ {"id":"slots","at":28.5,"text":"Three slots offered."},
+ {"id":"pick","at":30.4,"text":"They pick one."},
+ {"id":"locked","at":32.9,"text":"Time locked."},
+ {"id":"details","at":34.95,"text":"Name, email, number. Collected."},
+ {"id":"booked","at":38.2,"text":"Booked. Without me touching my phone."},
+ {"id":"cta","at":41.0,"text":"No setter salary. No missed leads. Want one in your DMs? Comment SETTER."}
 ]

@@ -95,6 +95,7 @@ window.setup=async(timeline,layout)=>{
     });
     $.type.appendChild(box);b.el=box;
   });
+  T.beats.forEach((b,i)=>{const n=T.beats[i+1];b.hardEnd=n?n.t0:T.end.at});
   // end card
   const e=T.end;$.end.innerHTML=`<div class="ln serif" style="font-size:${L.end.serif}px"><span>${e.serif}</span></div><div class="ln sans" style="font-size:${L.end.sans}px"><span>${e.sans}</span></div><div id="btn" style="font-size:${L.end.btn}px;padding:.8em 1.6em">${e.button}<em></em></div><div class="hair"></div><div class="sub" style="font-size:${L.end.sub}px">${e.sub}</div>`;
   await document.fonts.ready;
@@ -123,7 +124,7 @@ window.render=async(t,src)=>{
   tx=clamp(tx,w.w-cw,0);ty=clamp(ty,w.h-chh,0);
   $.ph.style.width=cw+'px';$.ph.style.height=chh+'px';$.ph.style.transform=`translate(${tx}px,${ty}px)`;
   // window intro / outro
-  const inP=expoOut(prog(t,0,0.9)),outP=quintInOut(prog(t,T.end.at-0.1,0.7));
+  const inP=expoOut(prog(t,T.introAt??0,0.9)),outP=quintInOut(prog(t,T.end.at-0.1,0.7));
   const ws=lerp(0.92,1,inP)*lerp(1,0.86,outP);
   $.win.style.transform=`translateY(${lerp(60,0,inP)+lerp(0,40,outP)}px) scale(${ws})`;
   $.win.style.opacity=Math.min(inP,1-outP);
@@ -141,8 +142,9 @@ window.render=async(t,src)=>{
   $.label.style.opacity=1-outP;
   // beats
   T.beats.forEach(b=>{
-    const vis=t>=b.t0-0.05&&t<b.t1+0.35;b.el.style.display=vis?'flex':'none';if(!vis)return;
-    const out=quintInOut(prog(t,b.t1,0.3));
+    const hard=b.hardEnd??Infinity,od=Math.max(0.08,Math.min(0.3,hard-b.t1));
+    const vis=t>=b.t0-0.05&&t<Math.min(b.t1+od+0.02,hard);b.el.style.display=vis?'flex':'none';if(!vis)return;
+    const out=quintInOut(prog(t,b.t1,od));
     b.el.style.opacity=1-out;b.el.style.transform=`translateY(${-out*30}px)`;b.el.style.filter=`blur(${out*10}px)`;
     b.el.querySelectorAll('.ln').forEach((ln,i)=>{
       const lt=b.lines[i][2]!=null?b.lines[i][2]:b.t0+i*0.08;

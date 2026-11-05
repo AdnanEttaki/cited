@@ -1,73 +1,594 @@
 {
-  "title": "AI DM Setter - Price Objection to Booked Call",
-  "raw": "/root/.claude/uploads/451d2ddf-3415-57aa-9a1c-8bfbefc830e4/069f56fd-Raw_video_1.mp4",
-  "rawCrop": "624:1060:228:20",
-  "crop": { "w": 624, "h": 1060 },
-  "rawDuration": 41.3,
-  "duration": 47.0,
-  "fps": 30,
-  "baseZoom": 1.0,
-  "label": "AI DM Setter · Live",
-  "voice": { "id": "EXAVITQu4vr4xnSDxMaL", "name": "Sarah" },
-  "camera": [
-    [0.0, 312, 530, 1.0],
-    [3.9, 312, 560, 1.06],
-    [4.6, 312, 600, 1.12],
-    [11.2, 312, 640, 1.12],
-    [15.3, 312, 560, 1.02],
-    [16.0, 397, 580, 1.42],
-    [18.1, 397, 580, 1.46],
-    [18.8, 277, 640, 1.38],
-    [21.6, 277, 640, 1.40],
-    [22.4, 312, 560, 1.06],
-    [28.2, 312, 600, 1.08],
-    [28.9, 277, 875, 1.45],
-    [31.9, 277, 875, 1.48],
-    [32.6, 330, 700, 1.10],
-    [33.1, 442, 817, 1.62],
-    [34.7, 442, 817, 1.66],
-    [35.5, 312, 560, 1.04],
-    [40.0, 312, 600, 1.04],
-    [40.6, 277, 855, 1.45],
-    [42.6, 277, 855, 1.52]
+ "title": "AI DM Setter - Price Objection to Booked Call",
+ "raw": "/root/.claude/uploads/451d2ddf-3415-57aa-9a1c-8bfbefc830e4/069f56fd-Raw_video_1.mp4",
+ "rawCrop": "624:1060:228:20",
+ "crop": {
+  "w": 624,
+  "h": 1060
+ },
+ "rawDuration": 41.3,
+ "duration": 49.0,
+ "fps": 30,
+ "baseZoom": 1.0,
+ "label": "AI DM Setter \u00b7 Live",
+ "voice": {
+  "id": "EXAVITQu4vr4xnSDxMaL",
+  "name": "Sarah"
+ },
+ "camera": [
+  [
+   0,
+   312,
+   530,
+   1.0
   ],
-  "beats": [
-    { "t0": 0.25, "t1": 2.2, "lines": [["This lead", "sans"], ["asked for the", "serif"], ["price.", "sans-blue"]] },
-    { "t0": 2.27, "t1": 3.95, "lines": [["My AI", "sans"], ["didn't", "serif"], ["flinch.", "sans-blue"]] },
-    { "t0": 4.2, "t1": 5.95, "lines": [["Every", "sans"], ["single", "serif"], ["message", "sans"]] },
-    { "t0": 6.06, "t1": 8.15, "lines": [["Not me.", "sans"], ["it's my", "serif"], ["AI setter", "sans-blue"]] },
-    { "t0": 8.22, "t1": 11.6, "lines": [["Replies in", "sans"], ["seconds,", "serif"], ["24/7", "sans-blue", 9.73]] },
-    { "t0": 11.8, "t1": 15.4, "lines": [["Real DM.", "sans"], ["handled", "serif"], ["hands-free.", "sans-blue"]] },
-    { "t0": 15.6, "t1": 17.55, "lines": [["The", "serif"], ["price", "sans"], ["objection", "sans-blue"]] },
-    { "t0": 17.63, "t1": 19.35, "lines": [["No dodge.", "sans"], ["no", "serif", 18.47], ["discount.", "sans", 18.68]] },
-    { "t0": 19.45, "t1": 23.6, "lines": [["It just", "serif"], ["qualifies.", "sans-blue", 19.65]] },
-    { "t0": 23.75, "t1": 40.2, "lines": [["the close", "serif", 23.75], ["Time zone", "check", 23.9], ["Slots", "check", 28.5], ["Booked", "check", 33.0]] },
-    { "t0": 40.4, "t1": 41.45, "lines": [["No setter", "sans"], ["salary.", "serif", 40.97]] },
-    { "t0": 41.5, "t1": 42.45, "lines": [["No missed", "sans"], ["leads.", "serif", 42.0]] }
+  [
+   3.9,
+   312,
+   560,
+   1.06
   ],
-  "end": {
-    "at": 42.6,
-    "serif": "want one in",
-    "sans": "your DMs?",
-    "sansDelay": 0.3,
-    "button": "COMMENT “SETTER”",
-    "buttonAt": 44.0,
-    "sub": "No setter salary · No missed leads"
+  [
+   4.5,
+   312,
+   600,
+   1.1
+  ],
+  [
+   8.4,
+   312,
+   600,
+   1.1
+  ],
+  [
+   9.1,
+   395,
+   625,
+   1.42
+  ],
+  [
+   10.25,
+   395,
+   625,
+   1.45
+  ],
+  [
+   10.8,
+   332,
+   440,
+   1.32
+  ],
+  [
+   12.3,
+   332,
+   440,
+   1.34
+  ],
+  [
+   12.9,
+   240,
+   394,
+   1.34
+  ],
+  [
+   14.7,
+   240,
+   394,
+   1.36
+  ],
+  [
+   15.3,
+   312,
+   560,
+   1.02
+  ],
+  [
+   16.0,
+   397,
+   580,
+   1.42
+  ],
+  [
+   18.1,
+   397,
+   580,
+   1.46
+  ],
+  [
+   18.8,
+   277,
+   620,
+   1.38
+  ],
+  [
+   21.0,
+   277,
+   620,
+   1.4
+  ],
+  [
+   21.8,
+   312,
+   560,
+   1.06
+  ],
+  [
+   28.2,
+   312,
+   600,
+   1.08
+  ],
+  [
+   28.9,
+   277,
+   875,
+   1.45
+  ],
+  [
+   31.9,
+   277,
+   875,
+   1.48
+  ],
+  [
+   32.5,
+   330,
+   700,
+   1.1
+  ],
+  [
+   33.0,
+   442,
+   817,
+   1.62
+  ],
+  [
+   34.4,
+   442,
+   817,
+   1.64
+  ],
+  [
+   35.0,
+   312,
+   640,
+   1.08
+  ],
+  [
+   35.6,
+   276,
+   880,
+   1.4
+  ],
+  [
+   37.6,
+   276,
+   880,
+   1.42
+  ],
+  [
+   38.3,
+   390,
+   788,
+   1.45
+  ],
+  [
+   39.9,
+   390,
+   788,
+   1.48
+  ],
+  [
+   40.5,
+   277,
+   855,
+   1.45
+  ],
+  [
+   43.7,
+   277,
+   855,
+   1.56
+  ]
+ ],
+ "beats": [
+  {
+   "t0": -0.4,
+   "t1": 1.95,
+   "lines": [
+    [
+     "This lead",
+     "sans",
+     -0.4
+    ],
+    [
+     "asked for the",
+     "serif",
+     -0.32
+    ],
+    [
+     "price.",
+     "sans-blue",
+     -0.24
+    ]
+   ]
   },
-  "flashes": [4.1, 15.5, 23.7, 42.5],
-  "sfx": [
-    { "file": "boom", "at": 0.2, "gain": -6 },
-    { "file": "whoosh", "at": 3.85, "gain": -10 },
-    { "file": "whoosh", "at": 15.25, "gain": -10 },
-    { "file": "whoosh", "at": 23.45, "gain": -10 },
-    { "file": "ding", "at": 24.5, "gain": -8 },
-    { "file": "ding", "at": 29.0, "gain": -8 },
-    { "file": "boom", "at": 33.0, "gain": -7 },
-    { "file": "ding", "at": 33.4, "gain": -6 },
-    { "file": "riser", "at": 39.6, "gain": -12 },
-    { "file": "whoosh", "at": 42.25, "gain": -8 },
-    { "file": "boom", "at": 44.0, "gain": -6 },
-    { "file": "pop", "at": [1.5, 5.1, 7.17, 10.3, 12.37, 14.47, 17.93, 19.03, 28.43, 32.7, 34.93, 38.07, 40.17], "gain": -10 }
-  ],
-  "music": { "file": "build/bed.mp3", "gain": -20, "duckTo": -30 }
+  {
+   "t0": 2.0,
+   "t1": 3.95,
+   "lines": [
+    [
+     "My AI",
+     "sans"
+    ],
+    [
+     "didn't",
+     "serif",
+     2.55
+    ],
+    [
+     "flinch.",
+     "sans-blue",
+     2.81
+    ]
+   ]
+  },
+  {
+   "t0": 4.15,
+   "t1": 5.38,
+   "lines": [
+    [
+     "Every",
+     "sans"
+    ],
+    [
+     "single",
+     "serif",
+     4.54
+    ],
+    [
+     "reply",
+     "sans",
+     4.6
+    ]
+   ]
+  },
+  {
+   "t0": 5.44,
+   "t1": 7.25,
+   "lines": [
+    [
+     "Not me.",
+     "sans"
+    ],
+    [
+     "it's my",
+     "serif",
+     6.25
+    ],
+    [
+     "AI setter",
+     "sans-blue",
+     6.46
+    ]
+   ]
+  },
+  {
+   "t0": 7.33,
+   "t1": 8.65,
+   "lines": [
+    [
+     "24/7",
+     "sans-blue"
+    ],
+    [
+     "no days off",
+     "serif",
+     7.88
+    ]
+   ]
+  },
+  {
+   "t0": 8.75,
+   "t1": 10.85,
+   "lines": [
+    [
+     "They even asked",
+     "serif"
+    ],
+    [
+     "Is this",
+     "sans",
+     9.66
+    ],
+    [
+     "a bot?",
+     "sans-blue",
+     10.03
+    ]
+   ]
+  },
+  {
+   "t0": 10.91,
+   "t1": 12.12,
+   "lines": [
+    [
+     "It told",
+     "sans"
+    ],
+    [
+     "the",
+     "serif",
+     11.36
+    ],
+    [
+     "truth.",
+     "sans-blue",
+     11.48
+    ]
+   ]
+  },
+  {
+   "t0": 12.18,
+   "t1": 15.3,
+   "lines": [
+    [
+     "and kept them",
+     "serif"
+    ],
+    [
+     "talking.",
+     "sans-blue",
+     12.94
+    ]
+   ]
+  },
+  {
+   "t0": 15.5,
+   "t1": 16.7,
+   "lines": [
+    [
+     "the",
+     "serif"
+    ],
+    [
+     "price",
+     "sans",
+     15.93
+    ],
+    [
+     "objection",
+     "sans-blue",
+     16.2
+    ]
+   ]
+  },
+  {
+   "t0": 16.89,
+   "t1": 17.5,
+   "lines": [
+    [
+     "Watch.",
+     "sans-blue"
+    ]
+   ]
+  },
+  {
+   "t0": 17.59,
+   "t1": 19.25,
+   "lines": [
+    [
+     "No dodge.",
+     "sans"
+    ],
+    [
+     "no",
+     "serif",
+     18.51
+    ],
+    [
+     "discount.",
+     "sans",
+     18.7
+    ]
+   ]
+  },
+  {
+   "t0": 19.32,
+   "t1": 21.45,
+   "lines": [
+    [
+     "It just",
+     "serif"
+    ],
+    [
+     "qualifies.",
+     "sans-blue",
+     19.53
+    ]
+   ]
+  },
+  {
+   "t0": 21.6,
+   "t1": 23.75,
+   "lines": [
+    [
+     "Going for",
+     "sans"
+    ],
+    [
+     "the",
+     "serif",
+     22.3
+    ],
+    [
+     "close.",
+     "sans-blue",
+     22.4
+    ]
+   ]
+  },
+  {
+   "t0": 23.9,
+   "t1": 40.85,
+   "lines": [
+    [
+     "Time zone",
+     "check",
+     23.9
+    ],
+    [
+     "Slots",
+     "check",
+     28.5
+    ],
+    [
+     "Time locked",
+     "check",
+     32.9
+    ],
+    [
+     "Details",
+     "check",
+     34.95
+    ],
+    [
+     "Booked",
+     "check",
+     38.2
+    ]
+   ]
+  },
+  {
+   "t0": 41.0,
+   "t1": 42.3,
+   "lines": [
+    [
+     "No setter",
+     "sans"
+    ],
+    [
+     "salary.",
+     "serif",
+     41.63
+    ]
+   ]
+  },
+  {
+   "t0": 42.35,
+   "t1": 43.6,
+   "lines": [
+    [
+     "No missed",
+     "sans"
+    ],
+    [
+     "leads.",
+     "serif",
+     42.95
+    ]
+   ]
+  }
+ ],
+ "end": {
+  "at": 43.7,
+  "serif": "want one in",
+  "sans": "your DMs?",
+  "sansDelay": 0.55,
+  "button": "COMMENT \u201cSETTER\u201d",
+  "buttonAt": 45.6,
+  "sub": "No setter salary \u00b7 No missed leads"
+ },
+ "flashes": [
+  4.05,
+  8.65,
+  15.4,
+  23.8,
+  43.6
+ ],
+ "sfx": [
+  {
+   "file": "boom",
+   "at": 0.1,
+   "gain": -6
+  },
+  {
+   "file": "whoosh",
+   "at": [
+    3.8,
+    8.4,
+    15.15,
+    23.55
+   ],
+   "gain": -10
+  },
+  {
+   "file": "pop",
+   "at": [
+    1.5,
+    5.1,
+    7.17,
+    10.3,
+    10.63,
+    12.37,
+    14.47,
+    17.93,
+    19.03,
+    28.43,
+    32.7,
+    34.93,
+    38.07,
+    40.17
+   ],
+   "gain": -11
+  },
+  {
+   "file": "click",
+   "at": [
+    16.89
+   ],
+   "gain": -6
+  },
+  {
+   "file": "ding",
+   "at": [
+    24.55,
+    29.3,
+    33.3,
+    36.8
+   ],
+   "gain": -8
+  },
+  {
+   "file": "boom",
+   "at": 38.2,
+   "gain": -7
+  },
+  {
+   "file": "ding",
+   "at": 40.17,
+   "gain": -6
+  },
+  {
+   "file": "riser",
+   "at": 40.7,
+   "gain": -12
+  },
+  {
+   "file": "whoosh",
+   "at": 43.35,
+   "gain": -8
+  },
+  {
+   "file": "boom",
+   "at": 45.6,
+   "gain": -6
+  }
+ ],
+ "music": {
+  "file": "build/bed.mp3",
+  "gain": -20,
+  "duckTo": -30
+ },
+ "introAt": -0.5
 }

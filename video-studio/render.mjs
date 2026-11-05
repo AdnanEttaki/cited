@@ -40,7 +40,7 @@ T.chunks = chunks;
 const LAYOUTS = {
   916: {
     W: 1080, H: 1920, frameInset: 40,
-    type: { x: 90, y: 180, w: 900, h: 440, align: 'center', sans: 128, serif: 82, check: 88 },
+    type: { x: 90, y: 180, w: 900, h: 440, align: 'center', sans: 128, serif: 82, check: 74 },
     win: { x: 237, y: 650, w: 606, h: 1030, r: 58 },
     cap: { glass: true, style: { left: '50%', top: '1712px', transform: 'translateX(-50%)', fontSize: '40px', whiteSpace: 'nowrap' } },
     label: { left: '50%', top: '120px', transform: 'translateX(-50%)' },
@@ -48,7 +48,7 @@ const LAYOUTS = {
   },
   11: {
     W: 1080, H: 1080, frameInset: 26,
-    type: { x: 64, y: 150, w: 350, h: 680, align: 'left', sans: 124, serif: 76, check: 74 },
+    type: { x: 64, y: 150, w: 350, h: 680, align: 'left', sans: 124, serif: 76, check: 64 },
     win: { x: 453, y: 50, w: 577, h: 980, r: 52 },
     cap: { glass: false, style: { left: '64px', top: '890px', width: '350px', fontSize: '34px', lineHeight: '1.25' } },
     label: { left: '64px', top: '78px' },

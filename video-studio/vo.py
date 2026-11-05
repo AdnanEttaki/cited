@@ -1,7 +1,9 @@
-"""ElevenLabs line-by-line voiceover with character timestamps. Usage: python3 vo.py cues.json voice_id outdir"""
+"""ElevenLabs line-by-line voiceover with character timestamps. Usage: python3 vo.py cues.json voice_id outdir [only_id,...]"""
 import json,base64,subprocess,sys,os
 cues=json.load(open(sys.argv[1])); voice=sys.argv[2]; out=sys.argv[3]; os.makedirs(out,exist_ok=True)
+only=sys.argv[4].split(',') if len(sys.argv)>4 else None
 for i,c in enumerate(cues):
+    if only and c['id'] not in only: continue
     body={"text":c["text"],"model_id":"eleven_multilingual_v2",
           "voice_settings":{"stability":0.45,"similarity_boost":0.8,"style":0.35,"use_speaker_boost":True},
           "previous_text":cues[i-1]["text"] if i else None,"next_text":cues[i+1]["text"] if i+1<len(cues) else None}
