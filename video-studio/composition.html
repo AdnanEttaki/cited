@@ -93,6 +93,7 @@ window.setup=async(timeline,layout)=>{
       if(style==='check')ln.classList.add('check');
       box.appendChild(ln);
     });
+    if(b.lines.every(l=>l[1]==='check')){Object.assign(box.style,{alignItems:'flex-start',width:'fit-content',right:L.type.align==='left'?'auto':'0',margin:L.type.align==='left'?'0':'0 auto'})}
     $.type.appendChild(box);b.el=box;
   });
   T.beats.forEach((b,i)=>{const n=T.beats[i+1];b.hardEnd=n?n.t0:T.end.at});

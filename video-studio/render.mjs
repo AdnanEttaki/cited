@@ -48,7 +48,7 @@ const LAYOUTS = {
   },
   11: {
     W: 1080, H: 1080, frameInset: 26,
-    type: { x: 64, y: 150, w: 350, h: 680, align: 'left', sans: 124, serif: 76, check: 64 },
+    type: { x: 64, y: 150, w: 350, h: 680, align: 'left', sans: 124, serif: 76, check: 58 },
     win: { x: 453, y: 50, w: 577, h: 980, r: 52 },
     cap: { glass: false, style: { left: '64px', top: '890px', width: '350px', fontSize: '34px', lineHeight: '1.25' } },
     label: { left: '64px', top: '78px' },
@@ -81,7 +81,7 @@ async function renderFormat(browser, fmt) {
     const a = w * per, b = Math.min(total, a + per); const seg = path.join(build, `seg_${fmt}_${w}.mp4`);
     const page = await openPage(browser, L);
     const ff = spawn('ffmpeg', ['-v', 'error', '-y', '-f', 'image2pipe', '-framerate', String(T.fps), '-c:v', 'mjpeg', '-i', '-',
-      '-c:v', 'libx264', '-preset', 'medium', '-crf', '15', '-pix_fmt', 'yuv420p', seg], { stdio: ['pipe', 'inherit', 'inherit'] });
+      '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-tune', 'film', '-pix_fmt', 'yuv420p', seg], { stdio: ['pipe', 'inherit', 'inherit'] });
     for (let i = a; i < b; i++) {
       const t = i / T.fps;
       await page.evaluate(([t, s]) => window.render(t, s), [t, frameSrc(t)]);
