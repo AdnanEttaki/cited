@@ -1,0 +1,25 @@
+{
+  "name": "Lux Blue",
+  "note": "Clean scheduling-app blue & white, finished with luxury restraint (navy depth, platinum hairlines, film grain). Original palette - no third-party logos or names.",
+  "colors": {
+    "electric": "#0069FF",
+    "electricGlow": "#3D8BFF",
+    "midnight": "#0B1F3A",
+    "abyss": "#050D1C",
+    "white": "#FFFFFF",
+    "mist": "#EEF4FF",
+    "platinum": "#C9D3E3"
+  },
+  "fonts": {
+    "display": "Anton",
+    "serif": "Playfair Display",
+    "ui": "Inter"
+  },
+  "rules": [
+    "Max two type styles per frame: Anton uppercase for punch words, Playfair italic for connective/luxury words.",
+    "Electric blue is an accent: one highlighted word or one button per frame, never full backgrounds.",
+    "Platinum only for hairlines, labels and checkmarks.",
+    "Motion is eased (expo/quint out), never linear or bouncy. Slow drift on backgrounds, fast reveals on type.",
+    "Always add grain (3-5%) and a soft vignette - flat digital black reads cheap."
+  ]
+}
