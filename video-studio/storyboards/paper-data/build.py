@@ -44,11 +44,11 @@ def phone(msgs, x=118, y=-18, rot=-3, w=304, h=478, typing=False, seen=True, hl=
         last_in = side == "in" and (i + 1 == len(msgs) or msgs[i + 1][0] != "in")
         av = '<i class="av"></i>' if last_in else '<i class="av sp"></i>' if side == "in" else ""
         cls = "b " + side + (" hl" if hl == i else "")
-        rows.append(f'<div class="m {side}">{av}<div class="{cls}">{txt}</div></div>')
+        rows.append(f'<div class="m {side}" style="--i:{i}">{av}<div class="{cls}">{txt}</div></div>')
     if seen and msgs and msgs[-1][0] == "out":
-        rows.append('<div class="seen">Seen</div>')
+        rows.append(f'<div class="seen" style="--i:{len(msgs)}">Seen</div>')
     if typing:
-        rows.append('<div class="m in"><i class="av"></i><div class="b in typing"><u></u><u></u><u></u></div></div>')
+        rows.append(f'<div class="m in" style="--i:{len(msgs)}"><i class="av"></i><div class="b in typing"><u></u><u></u><u></u></div></div>')
     return f'''<div class="ph" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;transform:rotate({rot}deg)"><div class="scr">
 <div class="sb"><b>9:41</b><span class="isl"></span><em><s></s><s></s><s></s><s></s></em></div>
 <div class="hd">{ICON["back"]}<i class="pav"></i><div><b>{name}</b><small>Active now</small></div><span>{ICON["phone"]}{ICON["video"]}</span></div>
