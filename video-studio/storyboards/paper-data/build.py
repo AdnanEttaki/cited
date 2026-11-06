@@ -1,4 +1,4 @@
-"""Paper-data style storyboard for the AI DM setter video (12 frames, 9:16).
+"""Paper-data style storyboard for the DM setter video (12 frames, 9:16). Chats shown on an Instagram-style DM screen.
 Style: cream paper + grid, editorial header, tactile 3D bars/cards/stickers, big black captions, 24h scrubber.
 Usage: python3 build.py  -> storyboard.html (render with shoot.mjs)"""
 import os
@@ -21,13 +21,44 @@ def tag(txt, color, x, y, rot=0):
 
 
 def bubble(who, txt, lead=True):
-    av = "L" if lead else "AI"
+    av = "L" if lead else "S"
     return (f'<div class="bub"><div class="who"><i class="{"" if lead else "ai"}">{av}</i>{who}<span>now</span></div>'
             f'<div class="txt">{txt}</div></div>')
 
 
-DMS = ["how much is it?", "still taking clients?", "price??", "is this a bot?", "can we hop on a call",
-       "what's the cost?", "u there?", "interested!!"]
+ICON = {
+ "back": '<svg viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ "phone": '<svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+ "video": '<svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="13" height="12" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M15.5 10.5l6-3.5v10l-6-3.5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+ "mic": '<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/><path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>',
+ "img": '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="9" cy="9" r="1.8" fill="#fff"/><path d="M4 18l5-5 4 4 3-3 4 4" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+ "heart": '<svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0112 7.4 4.3 4.3 0 0119.5 10c0 5.4-7.5 10-7.5 10z" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+ "cam": '<svg viewBox="0 0 24 24"><path d="M4 8h3l2-2.5h6L17 8h3v11H4z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.2" fill="none" stroke="#fff" stroke-width="2"/></svg>',
+}
+
+
+def phone(msgs, x=118, y=-18, rot=-3, w=304, h=478, typing=False, seen=True, hl=None, name="Jake | Coach"):
+    """Instagram-style dark DM screen (lead's view). msgs: list of (side, text); side 'in' = coach account, 'out' = lead."""
+    rows = []
+    for i, (side, txt) in enumerate(msgs):
+        last_in = side == "in" and (i + 1 == len(msgs) or msgs[i + 1][0] != "in")
+        av = '<i class="av"></i>' if last_in else '<i class="av sp"></i>' if side == "in" else ""
+        cls = "b " + side + (" hl" if hl == i else "")
+        rows.append(f'<div class="m {side}">{av}<div class="{cls}">{txt}</div></div>')
+    if seen and msgs and msgs[-1][0] == "out":
+        rows.append('<div class="seen">Seen</div>')
+    if typing:
+        rows.append('<div class="m in"><i class="av"></i><div class="b in typing"><u></u><u></u><u></u></div></div>')
+    return f'''<div class="ph" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;transform:rotate({rot}deg)"><div class="scr">
+<div class="sb"><b>9:41</b><span class="isl"></span><em><s></s><s></s><s></s><s></s></em></div>
+<div class="hd">{ICON["back"]}<i class="pav"></i><div><b>{name}</b><small>Active now</small></div><span>{ICON["phone"]}{ICON["video"]}</span></div>
+<div class="th">{"".join(rows)}</div>
+<div class="in-bar"><i class="cam">{ICON["cam"]}</i><span>Message...</span>{ICON["mic"]}{ICON["img"]}{ICON["heart"]}</div>
+</div></div>'''
+
+
+DMS = ["still taking clients?", "how does it work?", "saw your post 🔥", "is this for beginners?", "can we hop on a call",
+       "how do I start?", "u there?", "interested!!"]
 COLS = [K, O, T, M, A, K, O, T]
 
 frames = []
@@ -37,86 +68,116 @@ stack = "".join(
     f'<div class="row" style="top:{30 + i * 54}px;left:{-30 + (i % 3) * 14}px">'
     + bar(470 - (i % 4) * 30, COLS[i], 50, inner=f'<span class="dm"><em></em>{DMS[i]}</span>') + '</div>'
     for i in range(8))
-frames.append(dict(label="Unread DMs", right="02:14 AM", num="48", knob=1,
+frames.append(dict(label="Unread DMs", right="02:14 AM", num="48",
                    vis=stack + '<div class="badge" style="left:430px;top:6px">48</div>',
                    cap='<span class="hl">48 DMs</span> at 2&nbsp;AM.'))
 
 # 2 — reply time race
-race = (f'<div class="lbl" style="top:70px">YOU</div><div class="row" style="top:96px;left:-20px">{bar(490, K, 70, inner="<span class='big pl'>6h 12m</span>")}</div>'
-        f'<div class="lbl" style="top:220px">AI SETTER</div><div class="row" style="top:246px;left:-20px">{bar(150, O, 70, inner="<span class='big pl'>4s</span>")}</div>'
-        + tag("&#9889; 5,580× faster", T, 250, 268, -4))
-frames.append(dict(label="Reply time · you vs AI", right="02:15 AM", num="4s", knob=1,
-                   vis=race, cap='You reply in <span class="g">6 hours.</span> It replies in <span class="hlo">4 seconds.</span>'))
+race = (f'<div class="lbl" style="top:70px">YOU, ALONE</div><div class="row" style="top:96px;left:-20px">{bar(490, K, 70, inner="<span class=\'big pl\'>6h 12m</span>")}</div>'
+        f'<div class="lbl" style="top:220px">WITH YOUR SETTER</div><div class="row" style="top:246px;left:-20px">{bar(170, O, 70, inner="<span class=\'big pl\'>2 min</span>")}</div>'
+        + tag("&#9889; every lead, fast", T, 230, 268, -4))
+frames.append(dict(label="Reply time", right="02:15 AM", num="2m",
+                   vis=race, cap='You reply in <span class="g">6 hours.</span> We reply in <span class="hlo">minutes.</span>'))
 
-# 3 — is this a bot
-frames.append(dict(label="The lead asked", right="02:16 AM", num="?", knob=2,
-                   vis=card(bubble("The lead", "am I talking to a real person or is this an <mark>AI/bot?</mark>"), 40, 60, 400, -3)
-                   + card(bubble("AI setter", "I'm Jake's <mark class=o>AI assistant</mark>, Jake takes over on the call.", False), 70, 250, 400, 2)
-                   + tag("honest", O, 380, 230, 8),
-                   cap='They asked: <span class="hl">is this a bot?</span>'))
+# 3 — real conversation (IG DM)
+frames.append(dict(label="A real conversation", right="02:16 AM", num="DM",
+                   vis=phone([("out", "Heyy omg I just found your page and I'm obsessed with your content, been binging your posts all morning"),
+                              ("in", "Appreciate that, glad it's been useful. What's the main thing you want to change in the next 90 days?"),
+                              ("out", "Honestly I just want to drop like 8-10kg and actually stick with it this time")], hl=1)
+                       + tag("right question", O, 376, 300, 7),
+                   cap='Every lead gets a <span class="hl">real conversation.</span>'))
 
-# 4 — price objection with tags
-frames.append(dict(label="The price question", right="02:18 AM", num="$", knob=2,
-                   vis=card(bubble("The lead", "is it more like <mark>$50/month</mark> or <mark>$500/month?</mark>"), 50, 40, 420, -2)
-                   + '<div class="ptag" style="left:70px;top:250px;transform:rotate(-8deg)"><s>$50</s><small>discount?</small></div>'
-                   + '<div class="ptag dark" style="left:270px;top:240px;transform:rotate(6deg)">no dodge<small>qualify first</small></div>',
-                   cap='No dodge. <span class="hl">No discount.</span>'))
+# 4 — the cost question, no prices
+frames.append(dict(label="The cost question", right="02:18 AM", num="?",
+                   vis=phone([("out", "Okay real talk - how much does coaching with Jake actually cost, and is there any guarantee?"),
+                              ("in", "It depends on the goal, and Jake covers that on the call so you know exactly what fits you."),
+                              ("in", "If this is something you're serious about starting now, I can help you find a time to talk")], rot=3, hl=2)
+                       + tag("no dodge", K, 14, 150, -6) + tag("straight to the call", O, 300, 440, 4),
+                   cap='The cost question? <span class="hl">Handled.</span>'))
 
-# 5 — qualification checklist (index cards)
+# 5 — qualification checklist
 chk = "".join(
     f'<div class="row" style="top:{50 + i * 92}px;left:{30 + i * 18}px">{bar(380, c, 68, inner=f"<span class=chk>&#10003;</span><span class=big2>{t}</span>")}</div>'
-    for i, (t, c) in enumerate([("Goal", T), ("Budget", O), ("Timeline", M), ("Decision maker", K)]))
-frames.append(dict(label="Qualified in the DMs", right="02:21 AM", num="4/4", knob=3, vis=chk,
-                   cap='It <span class="hlo">qualifies</span> them first.'))
+    for i, (t, c) in enumerate([("Goal", T), ("Timeline", O), ("Commitment", M), ("Decision maker", K)]))
+frames.append(dict(label="Qualified in the DMs", right="02:21 AM", num="4/4", vis=chk,
+                   cap='We <span class="hlo">qualify</span> them first.'))
 
-# 6 — slots
-slots = "".join(
-    f'<div class="slot{" up" if i == 1 else ""}" style="left:{30 + i * 158}px">'
-    f'<small>MON 26</small><b>{t}</b>{"<em>picked</em>" if i == 1 else ""}</div>'
-    for i, t in enumerate(["1:00", "3:00", "6:00"]))
-frames.append(dict(label="Slots offered", right="02:23 AM", num="3", knob=3,
-                   vis=slots + '<div class="flag" style="left:240px;top:40px"></div>',
+# 6 — slots in the DM
+frames.append(dict(label="Slots offered", right="02:23 AM", num="3",
+                   vis=phone([("out", "Okay fair enough, yeah let's find a time, I'm in"),
+                              ("in", "Quick one, what time zone are you in?"),
+                              ("out", "I'm in Switzerland, so Central European time (CET)"),
+                              ("in", "Got it. I've got Monday, October 26 at 1:00 PM, 3:00 PM, or 6:00 PM Swiss time, which works best?"),
+                              ("out", "3:00 PM works for me")], rot=-2, hl=3)
+                       + '<div class="flag" style="left:420px;top:330px"></div>',
                    cap='Three slots. <span class="hl">They pick one.</span>'))
 
-# 7 — booked stamp
-frames.append(dict(label="Calendar", right="02:24 AM", num="✓", knob=4,
+# 7 — booked
+frames.append(dict(label="Calendar", right="02:24 AM", num="✓",
                    vis=card('<div class="cal"><div class="calh">MONDAY · OCT 26</div><div class="calb"><b>3:00 PM</b><span>Strategy call · 30 min</span></div></div>', 60, 60, 400, -2)
                    + '<div class="stamp">BOOKED</div>',
                    cap='<span class="hlo">Booked.</span> Hands-free.'))
 
-# 8 — leads per week (illustrative)
+# 8 — calls booked per week (illustrative)
 vals = [3, 4, 3, 9, 13, 16, 19]
 chart = "".join(
     f'<div class="col" style="left:{20 + i * 66}px;height:{v * 17}px;--c:{K if i < 3 else O}"><span>{v}</span></div>'
     for i, v in enumerate(vals))
-frames.append(dict(label="Calls booked per week", right="Week 7", num="19", knob=5,
+frames.append(dict(label="Calls booked per week", right="Week 7", num="19",
                    vis=f'<div class="chart">{chart}<div class="base"></div>'
-                       f'<div class="cut" style="left:213px"><i>AI on</i></div></div>',
+                       f'<div class="cut" style="left:213px"><i>Setter on</i></div></div>',
                    cap='No missed <span class="hl">leads.</span>'))
 
-# 9 — setter salary vs AI
-frames.append(dict(label="Cost per month", right="Week 8", num="0", knob=5,
-                   vis=f'<div class="lbl" style="top:40px">HUMAN SETTER</div><div class="row" style="top:66px;left:-20px">{bar(460, M, 74, inner="<span class='big pl'>salary + commission</span>")}</div>'
-                       f'<div class="lbl" style="top:200px">AI SETTER</div><div class="row" style="top:226px;left:-20px">{bar(200, T, 74, inner="<span class='big pl'>flat</span>")}</div>'
-                       + tag("no sick days", A, 270, 250, -5) + tag("24/7", K, 330, 310, 4),
-                   cap='No setter <span class="hlo">salary.</span>'))
+# 9 — leads left on read
+frames.append(dict(label="Leads left on read", right="Week 8", num="0",
+                   vis=f'<div class="lbl" style="top:40px">BEFORE</div><div class="row" style="top:66px;left:-20px">{bar(460, M, 74, inner="<span class=\'big pl\'>27 leads ghosted</span>")}</div>'
+                       f'<div class="lbl" style="top:200px">AFTER</div><div class="row" style="top:226px;left:-20px">{bar(110, T, 74, inner="<span class=\'big pl\'>0</span>")}</div>'
+                       + tag("follow-ups done", A, 250, 250, -5) + tag("24/7", K, 330, 310, 4),
+                   cap='No lead left <span class="hlo">on read.</span>'))
 
 # 10 — CTA key
-frames.append(dict(label="Try it", right="Now", num="→", knob=6,
+frames.append(dict(label="Your turn", right="Now", num="→",
                    vis='<div class="key">SETTER</div><div class="cbox"><i></i>Add a comment…<b>&#10148;</b></div>'
-                       + tag("free demo", O, 360, 40, 10),
+                       + tag("we'll DM you", O, 350, 40, 10),
                    cap='Comment <span class="hl">"SETTER"</span>'))
 
-# 11 — DM arrives
-frames.append(dict(label="Your DMs", right="Now", num="1", knob=6,
-                   vis=card(bubble("AI setter", "Hey! Here's the demo you asked for &#128071; want to see it on <mark class=o>your</mark> DMs?", False), 50, 90, 420, -2)
-                       + '<div class="badge" style="left:420px;top:60px">1</div>',
-                   cap="and I'll send you <span class=\"hlo\">the demo.</span>"))
+# 11 — DM arrives (IG DM)
+frames.append(dict(label="Your DMs", right="Now", num="1",
+                   vis=phone([("in", "Hey! Saw your comment 🙌"),
+                              ("in", "What's your business, and roughly how many DMs do you get a week?"),
+                              ("out", "Fitness coaching, around 40-50 a week"),
+                              ("in", "Got it. Want me to show you how we'd turn those into booked calls?")], seen=False, typing=True, rot=2, name="Your Agency", hl=3)
+                       + '<div class="badge" style="left:396px;top:-22px">1</div>',
+                   cap="and we'll <span class=\"hlo\">DM you.</span>"))
 
 # 12 — end card
-frames.append(dict(label="AI DM setter", right="24/7", num="24", knob=7,
-                   vis='<div class="key big">24/7</div>' + tag("replies in seconds", T, 60, 300, -4) + tag("books calls", O, 270, 330, 5),
+frames.append(dict(label="DM setting", right="24/7", num="24",
+                   vis='<div class="key big">24/7</div>' + tag("replies fast", T, 60, 300, -4) + tag("books calls", O, 270, 330, 5),
                    cap='Your DMs, <span class="hl">handled.</span>'))
+
+PHONE_CSS = """
+.ph{position:absolute;border-radius:40px;background:#0b0b0b;padding:9px;box-shadow:inset 0 0 0 2px #2b2b2b,0 0 0 1px #000,0 30px 50px rgba(50,30,10,.35),0 6px 0 #1a1a1a}
+.scr{position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden;background:#000;color:#fff;font-family:Inter,-apple-system,sans-serif;display:flex;flex-direction:column}
+.sb{height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 20px 0 24px;font:700 11px Inter;position:relative}
+.sb .isl{position:absolute;left:50%;top:6px;width:72px;height:20px;margin-left:-36px;border-radius:12px;background:#111}
+.sb em{display:flex;gap:2px;align-items:flex-end}.sb s{width:3px;background:#fff;border-radius:1px}.sb s:nth-child(1){height:4px}.sb s:nth-child(2){height:6px}.sb s:nth-child(3){height:8px}.sb s:nth-child(4){height:10px}
+.hd{height:46px;display:flex;align-items:center;gap:9px;padding:0 12px;border-bottom:1px solid #1f1f1f}
+.hd svg{width:20px;height:20px;flex:none}.hd .pav{width:30px;height:30px;border-radius:50%;flex:none;background:radial-gradient(circle at 50% 38%,#d9b59a 0 28%,transparent 29%),radial-gradient(circle at 50% 100%,#3b4a5c 0 45%,transparent 46%),#8a9bb0}
+.hd b{display:block;font:700 14px Inter}.hd small{display:block;font:400 10px Inter;color:#a8a8a8}
+.hd span{margin-left:auto;display:flex;gap:14px}
+.th{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:5px;overflow:hidden;padding:10px 10px 8px}
+.m{display:flex;align-items:flex-end;gap:6px}.m.out{justify-content:flex-end}
+.av{width:20px;height:20px;border-radius:50%;flex:none;background:radial-gradient(circle at 50% 38%,#d9b59a 0 28%,transparent 29%),radial-gradient(circle at 50% 100%,#3b4a5c 0 45%,transparent 46%),#8a9bb0}.av.sp{visibility:hidden}
+.b{max-width:78%;padding:8px 12px;border-radius:18px;font:500 13.5px/1.3 Inter;letter-spacing:-.005em}
+.b.in{background:#262626}
+.b.out{background:linear-gradient(135deg,#3797F0 0%,#5B51F0 55%,#A033FF 100%)}
+.b.hl{box-shadow:0 0 0 2.5px #F2A33A,0 0 22px rgba(242,163,58,.55)}
+.seen{align-self:flex-end;font:400 9.5px Inter;color:#a8a8a8;margin:1px 4px 0}
+.typing{display:flex;gap:3px;padding:10px 12px}.typing u{width:6px;height:6px;border-radius:50%;background:#8e8e8e}
+.in-bar{margin:6px 10px 14px;height:38px;border-radius:19px;background:#262626;display:flex;align-items:center;gap:10px;padding:0 12px 0 4px;font:400 11.5px Inter;color:#a8a8a8}
+.in-bar .cam{width:30px;height:30px;border-radius:50%;background:#3797F0;display:grid;place-items:center}.in-bar .cam svg{width:17px;height:17px}
+.in-bar span{flex:1}.in-bar>svg{width:18px;height:18px}
+"""
 
 TICKS = ["F1", "F3", "F5", "F7", "F9", "F11"]
 
@@ -199,6 +260,6 @@ mark{{background:{K};color:#fff;padding:0 .1em;border-radius:.1em}}mark.o{{backg
 .key.big{{font-size:110px;top:70px;height:200px}}
 .cbox{{position:absolute;left:60px;top:320px;width:420px;height:58px;border-radius:29px;background:#FBFAF6;border:1px solid #d6cfc1;display:flex;align-items:center;gap:12px;padding:0 10px;font:500 19px Inter;color:#8a8275;box-shadow:0 10px 20px rgba(0,0,0,.12)}}
 .cbox i{{width:38px;height:38px;border-radius:50%;background:{K}}}.cbox b{{margin-left:auto;color:{K}}}
-</style></head><body>{"".join(frame(i, f) for i, f in enumerate(frames))}</body></html>'''
+{PHONE_CSS}</style></head><body>{"".join(frame(i, f) for i, f in enumerate(frames))}</body></html>'''
 open(os.path.join(here, "storyboard.html"), "w").write(html)
 print("ok", len(frames))
