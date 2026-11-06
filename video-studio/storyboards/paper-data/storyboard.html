@@ -1,0 +1,150 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Paper Data Storyboard</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a1a1a;font-family:Inter,sans-serif;width:3284px;padding:12px;display:grid;grid-template-columns:repeat(6,540px);gap:4px}
+.fr{position:relative;width:540px;height:960px;overflow:hidden;color:#1B1B1B;
+ background:radial-gradient(120% 90% at 50% 40%,#F4F0E8 0%,#ECE6DA 70%,#E2DBCD 100%)}
+.fr::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.035) 0 1px,transparent 1px 36px),repeating-linear-gradient(90deg,rgba(0,0,0,.035) 0 1px,transparent 1px 36px)}
+.num{position:absolute;left:-20px;bottom:-120px;font:800 430px/1 Inter;letter-spacing:-.06em;color:rgba(60,45,25,.06);white-space:nowrap}
+header{position:absolute;left:40px;right:40px;top:78px;border-top:1px solid #1B1B1B;padding-top:10px;display:flex;justify-content:space-between;font:800 13px Inter;letter-spacing:.08em;text-transform:uppercase}
+header .rule{position:absolute;left:0;top:-3px;width:46px;height:5px;background:#1B1B1B}
+header em{font-style:normal}
+.vis{position:absolute;left:0;right:0;top:125px;height:470px}
+.cap{position:absolute;left:40px;right:40px;top:620px;font:800 44px/1.08 Inter;letter-spacing:-.035em}
+.hl,.hlo{color:#fff;background:#1B1B1B;padding:0 .12em;border-radius:.08em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hlo{background:#D8541E}
+.g{color:#9A9286}
+.scrub{position:absolute;left:0;right:0;top:820px;height:70px;font:700 11px Inter;color:#6D665B}
+.scrub .line{position:absolute;left:40px;right:40px;top:0;height:2px;background:#bdb5a7}
+.scrub .prog{position:absolute;left:40px;top:-1px;height:4px;background:#1B1B1B}.scrub .prog::after{content:"";position:absolute;left:250.90909090909088px;right:0;top:0;bottom:0;background:#D8541E}
+.scrub .knob{position:absolute;top:-8px;width:18px;height:18px;border-radius:50%;background:#1B1B1B;box-shadow:0 3px 6px rgba(0,0,0,.3)}
+.scrub .fl{position:absolute;top:-26px;width:2px;height:26px;background:#D8541E}.scrub .fl::after{content:"";position:absolute;left:2px;top:0;border-left:14px solid #D8541E;border-top:6px solid transparent;border-bottom:6px solid transparent}
+.scrub span{position:absolute;top:14px;transform:translateX(-50%)}
+.scrub small{position:absolute;top:34px;font:500 10px Inter}.scrub .l{left:40px}.scrub .r{right:40px}
+.row{position:absolute}
+.bar{position:relative;border-radius:7px;display:flex;align-items:center;padding:0 18px;color:#fff;
+ background:linear-gradient(180deg,color-mix(in srgb,var(--c),#fff 22%) 0%,var(--c) 45%,color-mix(in srgb,var(--c),#000 18%) 100%);
+ box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 8px 0 color-mix(in srgb,var(--c),#000 40%),0 22px 30px rgba(50,30,10,.28)}
+.bar b{font:800 18px Inter}
+.dm{display:flex;align-items:center;gap:10px;font:700 19px Inter;white-space:nowrap}
+.dm em{width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,.9);box-shadow:inset 0 0 0 5px rgba(0,0,0,.15)}
+.pl{padding-left:24px}
+.big{font:800 30px Inter;letter-spacing:-.02em;white-space:nowrap}.big2{font:800 28px Inter;letter-spacing:-.02em}
+.chk{width:34px;height:34px;border-radius:50%;background:#fff;color:#1B1B1B;display:grid;place-items:center;font:900 20px Inter;margin-right:14px}
+.lbl{position:absolute;left:40px;font:800 13px Inter;letter-spacing:.12em}
+.badge{position:absolute;min-width:62px;height:62px;padding:0 12px;border-radius:31px;background:#D8541E;color:#fff;font:800 30px Inter;display:grid;place-items:center;box-shadow:0 5px 0 #8f3510,0 14px 24px rgba(0,0,0,.3);border:3px solid #fff}
+.tag{position:absolute;padding:8px 14px 8px 22px;border-radius:6px;color:#fff;font:800 17px Inter;white-space:nowrap;box-shadow:0 4px 0 rgba(0,0,0,.25),0 12px 20px rgba(0,0,0,.2)}
+.tag::before{content:"";position:absolute;left:8px;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;background:#F4F0E8}
+.card{position:absolute;background:#FBFAF6;border-radius:16px;padding:18px;box-shadow:0 2px 0 #d8d1c3,0 24px 40px rgba(70,50,20,.22)}
+.bub .who{display:flex;align-items:center;gap:10px;font:800 14px Inter;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px}
+.bub .who i{width:30px;height:30px;border-radius:50%;background:#1B1B1B;color:#fff;font:800 12px Inter;font-style:normal;display:grid;place-items:center}
+.bub .who i.ai{background:#D8541E}
+.bub .who span{margin-left:auto;font-weight:500;color:#9A9286;text-transform:none}
+.bub .txt{font:700 26px/1.25 Inter;letter-spacing:-.02em}
+mark{background:#1B1B1B;color:#fff;padding:0 .1em;border-radius:.1em}mark.o{background:#D8541E}
+.ptag{position:absolute;width:190px;padding:22px 16px 18px;border-radius:10px 10px 10px 10px;background:#F7F3EA;border:2px solid #1B1B1B;font:800 34px Inter;text-align:center;box-shadow:0 6px 0 #c9c0b0,0 20px 30px rgba(0,0,0,.2)}
+.ptag::before{content:"";position:absolute;left:50%;top:9px;width:12px;height:12px;margin-left:-6px;border-radius:50%;border:2px solid #1B1B1B;background:#ECE6DA}
+.ptag small{display:block;font:600 14px Inter;color:#7d766a;margin-top:4px}.ptag s{text-decoration-thickness:4px;text-decoration-color:#D8541E}
+.ptag.dark{background:#1B1B1B;color:#fff;font-size:30px}.ptag.dark small{color:#bdb5a7}
+.slot{position:absolute;top:140px;width:140px;height:170px;border-radius:14px;background:#FBFAF6;box-shadow:0 6px 0 #d0c8b8,0 20px 30px rgba(0,0,0,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.slot small{font:800 12px Inter;letter-spacing:.12em;color:#8a8275}.slot b{font:800 42px Inter;letter-spacing:-.03em}
+.slot.up{top:96px;background:#D8541E;color:#fff;box-shadow:0 8px 0 #8f3510,0 28px 40px rgba(0,0,0,.28);transform:rotate(-3deg)}.slot.up small{color:#ffe1d3}
+.slot em{font:800 12px Inter;font-style:normal;background:#fff;color:#D8541E;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.1em}
+.flag{position:absolute;width:3px;height:60px;background:#1B1B1B}.flag::after{content:"";position:absolute;left:3px;top:0;border-left:30px solid #D8541E;border-top:12px solid transparent;border-bottom:12px solid transparent}
+.cal .calh{background:#D8541E;color:#fff;font:800 15px Inter;letter-spacing:.12em;padding:12px 16px;border-radius:10px 10px 0 0;margin:-18px -18px 0}
+.cal .calb{padding:26px 4px 10px}.cal b{display:block;font:800 72px Inter;letter-spacing:-.05em}.cal span{font:600 18px Inter;color:#7d766a}
+.stamp{position:absolute;left:230px;top:250px;padding:10px 22px;border:6px solid #D8541E;color:#D8541E;font:900 50px Inter;letter-spacing:.06em;border-radius:12px;transform:rotate(-12deg);background:rgba(244,240,232,.6)}
+.chart{position:absolute;left:40px;top:40px;width:460px;height:380px}
+.col{position:absolute;bottom:40px;width:50px;border-radius:6px 6px 2px 2px;background:linear-gradient(90deg,color-mix(in srgb,var(--c),#fff 15%),var(--c));box-shadow:6px 0 0 color-mix(in srgb,var(--c),#000 40%),0 16px 22px rgba(0,0,0,.2)}
+.col span{position:absolute;top:-30px;left:0;right:0;text-align:center;font:800 20px Inter;color:#1B1B1B}
+.base{position:absolute;left:-10px;right:-10px;bottom:30px;height:10px;border-radius:4px;background:#1B1B1B}
+.cut{position:absolute;top:0;bottom:30px;border-left:2px dashed #D8541E}.cut i{position:absolute;top:-6px;left:6px;background:#D8541E;color:#fff;font:800 13px Inter;font-style:normal;padding:4px 8px;border-radius:4px;white-space:nowrap}
+.key{position:absolute;left:60px;top:90px;width:420px;height:170px;border-radius:26px;display:grid;place-items:center;color:#fff;font:900 76px Inter;letter-spacing:-.02em;
+ background:linear-gradient(180deg,#E8703C,#D8541E 50%,#B9441A);box-shadow:inset 0 3px 0 rgba(255,255,255,.4),0 16px 0 #7f2e0d,0 40px 50px rgba(0,0,0,.3)}
+.key.big{font-size:110px;top:70px;height:200px}
+.cbox{position:absolute;left:60px;top:320px;width:420px;height:58px;border-radius:29px;background:#FBFAF6;border:1px solid #d6cfc1;display:flex;align-items:center;gap:12px;padding:0 10px;font:500 19px Inter;color:#8a8275;box-shadow:0 10px 20px rgba(0,0,0,.12)}
+.cbox i{width:38px;height:38px;border-radius:50%;background:#1B1B1B}.cbox b{margin-left:auto;color:#1B1B1B}
+</style></head><body><section class="fr">
+<div class="num">48</div>
+<header><div class="rule"></div><span>Unread DMs</span><em>02:14 AM</em></header>
+<div class="vis"><div class="row" style="top:30px;left:-30px"><div class="bar" style="width:470px;height:50px;--c:#1B1B1B;"><span class="dm"><em></em>how much is it?</span></div></div><div class="row" style="top:84px;left:-16px"><div class="bar" style="width:440px;height:50px;--c:#D8541E;"><span class="dm"><em></em>still taking clients?</span></div></div><div class="row" style="top:138px;left:-2px"><div class="bar" style="width:410px;height:50px;--c:#1E9E95;"><span class="dm"><em></em>price??</span></div></div><div class="row" style="top:192px;left:-30px"><div class="bar" style="width:380px;height:50px;--c:#D9257E;"><span class="dm"><em></em>is this a bot?</span></div></div><div class="row" style="top:246px;left:-16px"><div class="bar" style="width:470px;height:50px;--c:#F2A33A;"><span class="dm"><em></em>can we hop on a call</span></div></div><div class="row" style="top:300px;left:-2px"><div class="bar" style="width:440px;height:50px;--c:#1B1B1B;"><span class="dm"><em></em>what's the cost?</span></div></div><div class="row" style="top:354px;left:-30px"><div class="bar" style="width:410px;height:50px;--c:#D8541E;"><span class="dm"><em></em>u there?</span></div></div><div class="row" style="top:408px;left:-16px"><div class="bar" style="width:380px;height:50px;--c:#1E9E95;"><span class="dm"><em></em>interested!!</span></div></div><div class="badge" style="left:430px;top:6px">48</div></div>
+<div class="cap"><span class="hl">48 DMs</span> at 2&nbsp;AM.</div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:0.0px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:31.0px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 1 of 12</small></div>
+</section><section class="fr">
+<div class="num">4s</div>
+<header><div class="rule"></div><span>Reply time · you vs AI</span><em>02:15 AM</em></header>
+<div class="vis"><div class="lbl" style="top:70px">YOU</div><div class="row" style="top:96px;left:-20px"><div class="bar" style="width:490px;height:70px;--c:#1B1B1B;"><span class='big pl'>6h 12m</span></div></div><div class="lbl" style="top:220px">AI SETTER</div><div class="row" style="top:246px;left:-20px"><div class="bar" style="width:150px;height:70px;--c:#D8541E;"><span class='big pl'>4s</span></div></div><div class="tag" style="left:250px;top:268px;background:#1E9E95;transform:rotate(-4deg)">&#9889; 5,580× faster</div></div>
+<div class="cap">You reply in <span class="g">6 hours.</span> It replies in <span class="hlo">4 seconds.</span></div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:41.81818181818181px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:72.81818181818181px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 2 of 12</small></div>
+</section><section class="fr">
+<div class="num">?</div>
+<header><div class="rule"></div><span>The lead asked</span><em>02:16 AM</em></header>
+<div class="vis"><div class="card" style="left:40px;top:60px;width:400px;transform:rotate(-3deg);"><div class="bub"><div class="who"><i class="">L</i>The lead<span>now</span></div><div class="txt">am I talking to a real person or is this an <mark>AI/bot?</mark></div></div></div><div class="card" style="left:70px;top:250px;width:400px;transform:rotate(2deg);"><div class="bub"><div class="who"><i class="ai">AI</i>AI setter<span>now</span></div><div class="txt">I'm Jake's <mark class=o>AI assistant</mark>, Jake takes over on the call.</div></div></div><div class="tag" style="left:380px;top:230px;background:#D8541E;transform:rotate(8deg)">honest</div></div>
+<div class="cap">They asked: <span class="hl">is this a bot?</span></div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:83.63636363636364px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:114.63636363636364px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 3 of 12</small></div>
+</section><section class="fr">
+<div class="num">$</div>
+<header><div class="rule"></div><span>The price question</span><em>02:18 AM</em></header>
+<div class="vis"><div class="card" style="left:50px;top:40px;width:420px;transform:rotate(-2deg);"><div class="bub"><div class="who"><i class="">L</i>The lead<span>now</span></div><div class="txt">is it more like <mark>$50/month</mark> or <mark>$500/month?</mark></div></div></div><div class="ptag" style="left:70px;top:250px;transform:rotate(-8deg)"><s>$50</s><small>discount?</small></div><div class="ptag dark" style="left:270px;top:240px;transform:rotate(6deg)">no dodge<small>qualify first</small></div></div>
+<div class="cap">No dodge. <span class="hl">No discount.</span></div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:125.45454545454547px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:156.45454545454547px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 4 of 12</small></div>
+</section><section class="fr">
+<div class="num">4/4</div>
+<header><div class="rule"></div><span>Qualified in the DMs</span><em>02:21 AM</em></header>
+<div class="vis"><div class="row" style="top:50px;left:30px"><div class="bar" style="width:380px;height:68px;--c:#1E9E95;"><span class=chk>&#10003;</span><span class=big2>Goal</span></div></div><div class="row" style="top:142px;left:48px"><div class="bar" style="width:380px;height:68px;--c:#D8541E;"><span class=chk>&#10003;</span><span class=big2>Budget</span></div></div><div class="row" style="top:234px;left:66px"><div class="bar" style="width:380px;height:68px;--c:#D9257E;"><span class=chk>&#10003;</span><span class=big2>Timeline</span></div></div><div class="row" style="top:326px;left:84px"><div class="bar" style="width:380px;height:68px;--c:#1B1B1B;"><span class=chk>&#10003;</span><span class=big2>Decision maker</span></div></div></div>
+<div class="cap">It <span class="hlo">qualifies</span> them first.</div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:167.27272727272728px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:198.27272727272728px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 5 of 12</small></div>
+</section><section class="fr">
+<div class="num">3</div>
+<header><div class="rule"></div><span>Slots offered</span><em>02:23 AM</em></header>
+<div class="vis"><div class="slot" style="left:30px"><small>MON 26</small><b>1:00</b></div><div class="slot up" style="left:188px"><small>MON 26</small><b>3:00</b><em>picked</em></div><div class="slot" style="left:346px"><small>MON 26</small><b>6:00</b></div><div class="flag" style="left:240px;top:40px"></div></div>
+<div class="cap">Three slots. <span class="hl">They pick one.</span></div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:209.0909090909091px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:240.0909090909091px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 6 of 12</small></div>
+</section><section class="fr">
+<div class="num">✓</div>
+<header><div class="rule"></div><span>Calendar</span><em>02:24 AM</em></header>
+<div class="vis"><div class="card" style="left:60px;top:60px;width:400px;transform:rotate(-2deg);"><div class="cal"><div class="calh">MONDAY · OCT 26</div><div class="calb"><b>3:00 PM</b><span>Strategy call · 30 min</span></div></div></div><div class="stamp">BOOKED</div></div>
+<div class="cap"><span class="hlo">Booked.</span> Hands-free.</div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:250.90909090909093px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:281.90909090909093px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 7 of 12</small></div>
+</section><section class="fr">
+<div class="num">19</div>
+<header><div class="rule"></div><span>Calls booked per week</span><em>Week 7</em></header>
+<div class="vis"><div class="chart"><div class="col" style="left:20px;height:51px;--c:#1B1B1B"><span>3</span></div><div class="col" style="left:86px;height:68px;--c:#1B1B1B"><span>4</span></div><div class="col" style="left:152px;height:51px;--c:#1B1B1B"><span>3</span></div><div class="col" style="left:218px;height:153px;--c:#D8541E"><span>9</span></div><div class="col" style="left:284px;height:221px;--c:#D8541E"><span>13</span></div><div class="col" style="left:350px;height:272px;--c:#D8541E"><span>16</span></div><div class="col" style="left:416px;height:323px;--c:#D8541E"><span>19</span></div><div class="base"></div><div class="cut" style="left:213px"><i>AI on</i></div></div></div>
+<div class="cap">No missed <span class="hl">leads.</span></div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:292.72727272727275px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:323.72727272727275px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 8 of 12</small></div>
+</section><section class="fr">
+<div class="num">0</div>
+<header><div class="rule"></div><span>Cost per month</span><em>Week 8</em></header>
+<div class="vis"><div class="lbl" style="top:40px">HUMAN SETTER</div><div class="row" style="top:66px;left:-20px"><div class="bar" style="width:460px;height:74px;--c:#D9257E;"><span class='big pl'>salary + commission</span></div></div><div class="lbl" style="top:200px">AI SETTER</div><div class="row" style="top:226px;left:-20px"><div class="bar" style="width:200px;height:74px;--c:#1E9E95;"><span class='big pl'>flat</span></div></div><div class="tag" style="left:270px;top:250px;background:#F2A33A;transform:rotate(-5deg)">no sick days</div><div class="tag" style="left:330px;top:310px;background:#1B1B1B;transform:rotate(4deg)">24/7</div></div>
+<div class="cap">No setter <span class="hlo">salary.</span></div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:334.54545454545456px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:365.54545454545456px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 9 of 12</small></div>
+</section><section class="fr">
+<div class="num">→</div>
+<header><div class="rule"></div><span>Try it</span><em>Now</em></header>
+<div class="vis"><div class="key">SETTER</div><div class="cbox"><i></i>Add a comment…<b>&#10148;</b></div><div class="tag" style="left:360px;top:40px;background:#D8541E;transform:rotate(10deg)">free demo</div></div>
+<div class="cap">Comment <span class="hl">"SETTER"</span></div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:376.3636363636364px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:407.3636363636364px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 10 of 12</small></div>
+</section><section class="fr">
+<div class="num">1</div>
+<header><div class="rule"></div><span>Your DMs</span><em>Now</em></header>
+<div class="vis"><div class="card" style="left:50px;top:90px;width:420px;transform:rotate(-2deg);"><div class="bub"><div class="who"><i class="ai">AI</i>AI setter<span>now</span></div><div class="txt">Hey! Here's the demo you asked for &#128071; want to see it on <mark class=o>your</mark> DMs?</div></div></div><div class="badge" style="left:420px;top:60px">1</div></div>
+<div class="cap">and I'll send you <span class="hlo">the demo.</span></div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:418.1818181818182px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:449.1818181818182px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 11 of 12</small></div>
+</section><section class="fr">
+<div class="num">24</div>
+<header><div class="rule"></div><span>AI DM setter</span><em>24/7</em></header>
+<div class="vis"><div class="key big">24/7</div><div class="tag" style="left:60px;top:300px;background:#1E9E95;transform:rotate(-4deg)">replies in seconds</div><div class="tag" style="left:270px;top:330px;background:#D8541E;transform:rotate(5deg)">books calls</div></div>
+<div class="cap">Your DMs, <span class="hl">handled.</span></div>
+<div class="scrub"><div class="line"></div><div class="prog" style="width:460.0px"></div><div class="fl" style="left:290.90909090909093px"></div>
+<div class="knob" style="left:491.0px"></div><span style="left:40.0px">F1</span><span style="left:123.63636363636364px">F3</span><span style="left:207.27272727272728px">F5</span><span style="left:290.90909090909093px">F7</span><span style="left:374.54545454545456px">F9</span><span style="left:458.1818181818182px">F11</span><small class="l">Values illustrative</small><small class="r">Frame 12 of 12</small></div>
+</section></body></html>
