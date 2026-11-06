@@ -112,7 +112,7 @@ header{animation:fadeIn .5s ease calc(0ms - var(--pre)) both}
 @keyframes bob{from{rotate:-.9deg}to{rotate:.9deg}}
 @keyframes wig{from{rotate:-3deg}to{rotate:3deg}}
 @keyframes beat{0%,100%{scale:1}15%{scale:1.14}30%{scale:1}}
-.b.hl{animation:glow 1s ease-in-out calc(700ms + var(--i,0)*380ms - var(--pre)) infinite alternate none}
+.b.hlb{animation:glow 1s ease-in-out calc(700ms + var(--i,0)*380ms - var(--pre)) infinite alternate none}
 @keyframes glow{to{box-shadow:0 0 0 3.5px #F2A33A,0 0 34px rgba(242,163,58,.9)}}
 .num{animation:numIn .9s cubic-bezier(.2,.8,.2,1) calc(0ms - var(--pre)) both,drift 4s linear calc(900ms - var(--pre)) infinite alternate none}
 @keyframes drift{to{translate:-26px 0}}
@@ -127,8 +127,8 @@ header{animation:fadeIn .5s ease calc(0ms - var(--pre)) both}
 
 .w{display:inline-block;animation:wordIn .26s cubic-bezier(.2,.9,.3,1.3) var(--wd) both}
 @keyframes wordIn{from{opacity:0;translate:0 18px;scale:.6}}
-.hl,.hlo{background:linear-gradient(var(--hb),var(--hb)) no-repeat 0 0/0% 100%;color:#1B1B1B;animation:wipe .3s ease var(--wd) both}
-.hl{--hb:#1B1B1B}.hlo{--hb:#D8541E}
+.cap .hl,.cap .hlo{background:linear-gradient(var(--hb),var(--hb)) no-repeat 0 0/0% 100%;color:#1B1B1B;animation:wipe .3s ease var(--wd) both}
+.cap .hl{--hb:#1B1B1B}.cap .hlo{--hb:#D8541E}
 @keyframes wipe{to{background-size:100% 100%;color:#fff}}
 .scrub .knob{animation:slideK .5s cubic-bezier(.3,.9,.3,1) both}
 @keyframes slideK{from{left:var(--from)}}

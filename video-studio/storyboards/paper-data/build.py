@@ -43,7 +43,7 @@ def phone(msgs, x=118, y=-18, rot=-3, w=304, h=478, typing=False, seen=True, hl=
     for i, (side, txt) in enumerate(msgs):
         last_in = side == "in" and (i + 1 == len(msgs) or msgs[i + 1][0] != "in")
         av = '<i class="av"></i>' if last_in else '<i class="av sp"></i>' if side == "in" else ""
-        cls = "b " + side + (" hl" if hl == i else "")
+        cls = "b " + side + (" hlb" if hl == i else "")
         rows.append(f'<div class="m {side}" style="--i:{i}">{av}<div class="{cls}">{txt}</div></div>')
     if seen and msgs and msgs[-1][0] == "out":
         rows.append(f'<div class="seen" style="--i:{len(msgs)}">Seen</div>')
@@ -84,7 +84,7 @@ frames.append(dict(label="A real conversation", right="02:16 AM", num="DM",
                    vis=phone([("out", "Heyy omg I just found your page and I'm obsessed with your content, been binging your posts all morning"),
                               ("in", "Appreciate that, glad it's been useful. What's the main thing you want to change in the next 90 days?"),
                               ("out", "Honestly I just want to drop like 8-10kg and actually stick with it this time")], hl=1)
-                       + tag("right question", O, 376, 300, 7),
+                       + tag("right question", O, 372, 232, 7),
                    cap='Every lead gets a <span class="hl">real conversation.</span>'))
 
 # 4 — the cost question, no prices
@@ -171,7 +171,7 @@ PHONE_CSS = """
 .b{max-width:78%;padding:8px 12px;border-radius:18px;font:500 13.5px/1.3 Inter;letter-spacing:-.005em}
 .b.in{background:#262626}
 .b.out{background:linear-gradient(135deg,#3797F0 0%,#5B51F0 55%,#A033FF 100%)}
-.b.hl{box-shadow:0 0 0 2.5px #F2A33A,0 0 22px rgba(242,163,58,.55)}
+.b.hlb{box-shadow:0 0 0 2.5px #F2A33A,0 0 22px rgba(242,163,58,.55)}
 .seen{align-self:flex-end;font:400 9.5px Inter;color:#a8a8a8;margin:1px 4px 0}
 .typing{display:flex;gap:3px;padding:10px 12px}.typing u{width:6px;height:6px;border-radius:50%;background:#8e8e8e}
 .in-bar{margin:6px 10px 14px;height:38px;border-radius:19px;background:#262626;display:flex;align-items:center;gap:10px;padding:0 12px 0 4px;font:400 11.5px Inter;color:#a8a8a8}
