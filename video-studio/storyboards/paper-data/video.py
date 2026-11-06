@@ -66,7 +66,7 @@ body{width:1080px;height:1920px;padding:0;display:block;background:#ECE6DA}
 .fr.on{opacity:1}
 .fr *{animation-fill-mode:both;animation-play-state:paused}
 .fr{animation:push var(--dur) linear both paused}
-@keyframes push{from{scale:1}to{scale:1.035}}
+@keyframes push{from{scale:1}to{scale:1.06}}
 .num{animation:numIn .9s cubic-bezier(.2,.8,.2,1) calc(0ms - var(--pre)) both}
 @keyframes numIn{from{translate:0 80px;opacity:0}}
 header{animation:fadeIn .5s ease calc(0ms - var(--pre)) both}
@@ -103,8 +103,30 @@ header{animation:fadeIn .5s ease calc(0ms - var(--pre)) both}
 @keyframes fadeUp{from{opacity:0;translate:0 20px}}
 .huge{font:900 64px Inter;letter-spacing:-.04em}
 .cap{z-index:5}
+.ph,.card,.slot.up,.key{animation-composition:replace}
+.ph{animation:phIn .75s cubic-bezier(.2,.9,.3,1.1) calc(40ms - var(--pre)) both,bob 2.6s ease-in-out calc(800ms - var(--pre)) infinite alternate none}
+.card{animation:phIn .7s cubic-bezier(.2,.9,.3,1.1) calc(var(--k,0)*150ms + 40ms - var(--pre)) both,bob 2.2s ease-in-out calc(800ms - var(--pre)) infinite alternate none}
+.tag{animation:pop .45s cubic-bezier(.2,.9,.3,1.6) calc(var(--k,0)*160ms + 650ms - var(--pre)) both,wig 1.4s ease-in-out calc(1100ms - var(--pre)) infinite alternate none}
+.tag.xl{animation:pop .45s cubic-bezier(.2,.9,.3,1.6) calc(150ms - var(--pre)) both,wig 1.2s ease-in-out calc(600ms - var(--pre)) infinite alternate none}
+.badge{animation:pop .45s cubic-bezier(.2,.9,.3,1.6) calc(320ms - var(--pre)) both,beat .9s ease-in-out calc(800ms - var(--pre)) infinite none}
+@keyframes bob{from{rotate:-.9deg}to{rotate:.9deg}}
+@keyframes wig{from{rotate:-3deg}to{rotate:3deg}}
+@keyframes beat{0%,100%{scale:1}15%{scale:1.14}30%{scale:1}}
+.b.hl{animation:glow 1s ease-in-out calc(700ms + var(--i,0)*380ms - var(--pre)) infinite alternate none}
+@keyframes glow{to{box-shadow:0 0 0 3.5px #F2A33A,0 0 34px rgba(242,163,58,.9)}}
+.num{animation:numIn .9s cubic-bezier(.2,.8,.2,1) calc(0ms - var(--pre)) both,drift 4s linear calc(900ms - var(--pre)) infinite alternate none}
+@keyframes drift{to{translate:-26px 0}}
+.row{animation:barIn .7s cubic-bezier(.2,.9,.3,1.12) calc(var(--k,0)*70ms + 80ms - var(--pre)) both,sway 2.4s ease-in-out calc(900ms + var(--k,0)*90ms - var(--pre)) infinite alternate none}
+@keyframes sway{to{translate:10px 0}}
+.wipe{position:absolute;inset:-10%;z-index:20;pointer-events:none;opacity:0}
+.cf{position:absolute;left:50%;top:45%;width:9px;height:14px;border-radius:2px;background:var(--c);z-index:6;
+ animation:conf 1.3s cubic-bezier(.15,.7,.4,1) calc(var(--cd) - var(--pre)) both}
+@keyframes conf{from{translate:0 0;rotate:0deg;opacity:1}75%{opacity:1}to{translate:var(--x) var(--y);rotate:var(--r);opacity:0}}
+.key.press::after{content:"";position:absolute;left:50%;top:50%;width:40px;height:40px;margin:-20px;border-radius:50%;border:4px solid #fff;animation:ripple .6s ease-out calc(1080ms - var(--pre)) both}
+@keyframes ripple{from{scale:.2;opacity:.9}to{scale:9;opacity:0}}
+
 .w{display:inline-block;animation:wordIn .26s cubic-bezier(.2,.9,.3,1.3) var(--wd) both}
-@keyframes wordIn{from{opacity:0;translate:0 12px}}
+@keyframes wordIn{from{opacity:0;translate:0 18px;scale:.6}}
 .hl,.hlo{background:linear-gradient(var(--hb),var(--hb)) no-repeat 0 0/0% 100%;color:#1B1B1B;animation:wipe .3s ease var(--wd) both}
 .hl{--hb:#1B1B1B}.hlo{--hb:#D8541E}
 @keyframes wipe{to{background-size:100% 100%;color:#fff}}
@@ -150,6 +172,13 @@ def caption_html(cap, wtimes, vo_at):
             inner = f'<span class="g">{inner}</span>'
         html.append(inner); k += len(ws)
     return " ".join(html)
+
+
+def confetti(n=30, seed=3, delay=600):
+    import random
+    r = random.Random(seed); cols = ["#D8541E", "#1E9E95", "#D9257E", "#F2A33A", "#1B1B1B"]
+    return "".join(f'<i class="cf" style="--c:{r.choice(cols)};--x:{r.uniform(-260, 260):.0f}px;--y:{r.uniform(-330, 120):.0f}px;'
+                   f'--r:{r.uniform(-540, 540):.0f}deg;--cd:{delay + r.randint(0, 120)}ms"></i>' for _ in range(n))
 
 
 def index_classes(vis):
@@ -199,6 +228,11 @@ def cmd_html(hook):
         ticks = "".join(f'<span style="left:{40 + j * 2 * (460 / 11)}px">{h}</span>' for j, h in enumerate(ns["TICKS"]))
         vis = index_classes(s["vis"])
         vis_cls = "vis shake" if "stamp" in vis else "vis"
+        if "stamp" in vis: vis += confetti(34, 5, 600)
+        if "24/7" in s["vis"] and "key big" in s["vis"]: vis += confetti(30, 9, 250)
+        if 'class="key' in vis and "SETTER" in vis: vis += confetti(22, 7, 1100)
+        vis = re.sub(r'(<div class="col" style="--k:(\d+);[^"]*"><span>)(\d+)(</span>)',
+                     lambda m: f'{m.group(1)}<b data-count="{m.group(3)}" data-cd="{int(m.group(2)) * 90 + 100}">{m.group(3)}</b>{m.group(4)}', vis)
         if "class=\"key\"" in vis and "SETTER" in vis: vis = vis.replace('class="key"', 'class="key press"')
         secs.append(f'''<section class="fr" data-t0="{t:.3f}" data-pre="{pre}" style="--dur:{dur:.2f}s;--pre:{pre}ms">
 <div class="num">{s["num"]}</div>
@@ -210,14 +244,24 @@ def cmd_html(hook):
 </section>''')
         cues.append({"id": s["id"], "at": round(t + vo_at, 3)})
         for off, f, g in s["sfx"]: sfx.append({"file": f, "at": round(t + off, 3), "gain": g})
+        if i: sfx.append({"file": "whoosh", "at": round(t - 0.12, 3), "gain": -15})
         t += dur
     html = f'''<!doctype html><html><head><meta charset="utf-8"><title>Paper Video {hook}</title><style>{BASE_CSS}{ANIM_CSS}</style></head>
 <body><div id="stage">{"".join(secs)}</div>
 <script>
 const S=[...document.querySelectorAll('.fr')].map(el=>({{el,t0:+el.dataset.t0}}));
 window.ready=(async()=>{{await document.fonts.ready;S.forEach(s=>s.anims=s.el.getAnimations({{subtree:true}}));S.forEach(s=>s.anims.forEach(a=>a.pause()));}})();
+const ease=x=>x>=1?1:1-Math.pow(2,-10*x),TR=.34,TYPES=['left','up','zoom'];
 window.render=t=>{{let cur=0;S.forEach((s,i)=>{{if(t>=s.t0)cur=i}});
- S.forEach((s,i)=>{{s.el.classList.toggle('on',i===cur);if(i===cur)s.anims.forEach(a=>a.currentTime=Math.max(0,(t-s.t0)*1000))}});}};
+ const lt=t-S[cur].t0,inT=cur>0&&lt<TR,p=ease(lt/TR),ty=TYPES[cur%3];
+ S.forEach((s,i)=>{{const on=i===cur||(inT&&i===cur-1);s.el.classList.toggle('on',on);s.el.style.transform='';s.el.style.filter='';s.el.style.zIndex=i===cur?2:1;
+  if(!on)return;const loc=(t-s.t0)*1000;s.anims.forEach(a=>a.currentTime=Math.max(0,loc));
+  s.el.querySelectorAll('[data-count]').forEach(e=>{{const q=Math.min(1,Math.max(0,(loc-(+e.dataset.cd))/800));e.textContent=Math.round(+e.dataset.count*(1-Math.pow(1-q,3)))}});}});
+ if(inT){{const a=S[cur].el,b=S[cur-1].el;
+  if(ty==='left'){{a.style.transform=`translateX(${{(1-p)*100}}%) rotate(${{(1-p)*4}}deg)`;b.style.transform=`translateX(${{-p*60}}%) rotate(${{-p*3}}deg)`;b.style.filter=`blur(${{p*6}}px)`}}
+  else if(ty==='up'){{a.style.transform=`translateY(${{(1-p)*100}}%)`;b.style.transform=`translateY(${{-p*40}}%) scale(${{1-p*.1}})`;b.style.filter=`blur(${{p*6}}px)`}}
+  else{{a.style.transform=`scale(${{.7+.3*p}})`;a.style.opacity=p;b.style.transform=`scale(${{1+p*.6}})`;b.style.filter=`blur(${{p*10}}px)`}}
+ }} else S.forEach(s=>s.el.style.opacity='');}};
 </script></body></html>'''
     open(os.path.join(here, f"video_{hook}.html"), "w").write(html)
     json.dump({"duration": round(t, 3), "fps": 30, "cues": cues, "sfx": sfx}, open(os.path.join(here, f"timeline_{hook}.json"), "w"), indent=1)
