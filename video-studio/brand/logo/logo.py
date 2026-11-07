@@ -18,9 +18,11 @@ def cloud(fill, stroke=None, dx=0, dy=0):
     return f'<g fill="{fill}">{circles}{base}</g>'
 
 
-def eyes(color=INK, look=0):
-    return (f'<rect x="{112 + look}" y="96" width="15" height="30" rx="7.5" fill="{color}" transform="rotate(-10 {119 + look} 111)"/>'
-            f'<rect x="{144 + look}" y="96" width="15" height="30" rx="7.5" fill="{color}" transform="rotate(-10 {151 + look} 111)"/>')
+def eyes(color=INK):
+    """Pill eyes tilted and shifted up-right so the cloud looks at the send badge."""
+    return (f'<rect x="128" y="80" width="15" height="29" rx="7.5" fill="{color}" transform="rotate(30 135 94)"/>'
+            f'<rect x="160" y="84" width="15" height="29" rx="7.5" fill="{color}" transform="rotate(30 167 98)"/>'
+            f'<circle cx="140" cy="86" r="2.8" fill="#fff" opacity=".9"/><circle cx="172" cy="90" r="2.8" fill="#fff" opacity=".9"/>')
 
 
 def plane(color="#fff", fold="#C9D3E3"):
@@ -30,7 +32,7 @@ def plane(color="#fff", fold="#C9D3E3"):
             f'<path d="M19 24 L19 33 L24 28" fill="{fold}"/>')
 
 
-def badge(bg, plane_col="#fff", fold=None, cx=200, cy=172, r=34, ring=CREAM):
+def badge(bg, plane_col="#fff", fold=None, cx=208, cy=58, r=34, ring=CREAM):
     fold = fold or ("#F2C8A8" if bg == ORANGE else "#C9D3E3")
     return (f'<circle cx="{cx}" cy="{cy + 4}" r="{r + 6}" fill="{SHADOW}" opacity=".22"/>'
             f'<circle cx="{cx}" cy="{cy}" r="{r + 6}" fill="{ring}"/><circle cx="{cx}" cy="{cy}" r="{r}" fill="{bg}"/>'
@@ -42,8 +44,8 @@ def mark(cloud_fill=ORANGE, eye=INK, badge_bg=INK, outline=None, trail=False, si
     body = cloud(cloud_fill, outline)
     tr = ""
     if trail:  # dotted flight path from the cloud to the plane badge (nod to the carousel 'DM' trail)
-        tr = f'<path d="M60 205 C 90 245, 150 240, 176 196" fill="none" stroke="{INK}" stroke-width="4" stroke-dasharray="1 10" stroke-linecap="round"/>'
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 30 240 230" width="{size}" height="{size * 230 / 240:.0f}">'
+        tr = f'<path d="M34 92 C 40 40, 120 4, 170 40" fill="none" stroke="{INK}" stroke-width="4" stroke-dasharray="1 10" stroke-linecap="round"/>'
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 -20 260 260" width="{size}" height="{size}">'
             f'{shadow}{body}{eyes(eye)}{tr}{badge(badge_bg)}</svg>')
 
 
@@ -51,14 +53,14 @@ def app_icon(bg=CREAM, cloud_fill=ORANGE, badge_bg=INK, eye=INK, size=220):
     inner = mark(cloud_fill, eye, badge_bg)[mark(cloud_fill, eye, badge_bg).index('>') + 1:-6]
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="{size}" height="{size}">'
             f'<rect width="300" height="300" rx="66" fill="{bg}"/>'
-            f'<g transform="translate(18 22)">{inner}</g></svg>')
+            f'<g transform="translate(14 45)">{inner}</g></svg>')
 
 
 def wordmark(dark=False, size=520):
     ink = CREAM if dark else INK
     inner = mark()[mark().index('>') + 1:-6]
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230" width="{size}" height="{size * 230 / 640:.0f}">'
-            f'<g transform="translate(-20 -20)">{inner}</g>'
+            f'<g transform="translate(-16 12)">{inner}</g>'
             f'<text x="262" y="138" font-family="Inter" font-weight="900" font-size="78" letter-spacing="-3.5" fill="{ink}">DM<tspan fill="{ORANGE}">Setter</tspan></text>'
             f'<text x="266" y="174" font-family="Inter" font-weight="700" font-size="17" letter-spacing="5" fill="{ink}" opacity=".6">YOUR DMs, HANDLED.</text></svg>')
 

@@ -12,8 +12,10 @@ await p.evaluate(() => document.fonts.ready);
 await p.screenshot({ path: path.join(here, 'sheet.png'), fullPage: true });
 fs.mkdirSync(path.join(here, 'png'), { recursive: true });
 for (const f of fs.readdirSync(path.join(here, 'svg'))) {
-  const svg = fs.readFileSync(path.join(here, 'svg', f), 'utf8').replace(/width="\d+" height="\d+"/, 'width="1024" height="1024" preserveAspectRatio="xMidYMid meet"');
-  const q = await b.newPage({ viewport: { width: 1024, height: 1024 } });
+  const raw = fs.readFileSync(path.join(here, 'svg', f), 'utf8');
+  const svg = f.startsWith('wordmark') ? raw.replace(/width="\d+" height="\d+"/, 'width="2048" height="736"')
+    : raw.replace(/width="\d+" height="\d+"/, 'width="1024" height="1024" preserveAspectRatio="xMidYMid meet"');
+  const q = await b.newPage({ viewport: { width: 2048, height: 1024 } });
   await q.setContent(`<html><body style="margin:0;background:transparent">${svg}</body></html>`);
   await q.evaluate(() => document.fonts.ready);
   await q.locator('svg').screenshot({ path: path.join(here, 'png', f.replace('.svg', '.png')), omitBackground: true });
