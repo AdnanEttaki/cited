@@ -117,7 +117,7 @@ def low_head(c, e, b, m, x):
             f'<path d="M98 140 q-6 4 0 6 M142 140 q6 4 0 6" stroke="{c["skin_d"]}" stroke-width="2" fill="none" opacity=".7"/>'
             f'<path d="M118 132 q-4 12 4 13" stroke="{c["skin_d"]}" stroke-width="3" fill="none" stroke-linecap="round"/>'
             f'<g filter="url(#cut)"><path d="M66 112 C58 70 90 48 120 50 C156 48 184 72 175 114 L166 96 L158 110 L150 88 L140 104 L128 84 L118 102 L106 86 L96 104 L86 90 L78 108 Z" fill="{c["hair"]}"/></g>'
-            + eyes(c, e) + brows(b) + mouth(m))
+            + f'<g class="eyes">{eyes(c, e)}</g>' + brows(b) + mouth(m))
 
 
 def high_body(c):
@@ -142,7 +142,7 @@ def high_head(c, e, b, m, x):
             f'<path d="M100 92 C120 80 150 84 166 104" stroke="{c.get("hair_d", c["hair"])}" stroke-width="3" fill="none" stroke-linecap="round"/>'
             f'<ellipse cx="94" cy="146" rx="9" ry="5" fill="#E8826E" opacity=".45"/><ellipse cx="146" cy="146" rx="9" ry="5" fill="#E8826E" opacity=".45"/>'
             f'<path d="M118 132 q-4 11 4 12" stroke="{c["skin_d"]}" stroke-width="3" fill="none" stroke-linecap="round"/>'
-            + eyes(c, e) + lashes + brows(b) + mouth(m, "#B24A3E"))
+            + f'<g class="eyes">{eyes(c, e)}{lashes}</g>' + brows(b) + mouth(m, "#B24A3E"))
 
 
 def char_svg(who, expr, size=200):
