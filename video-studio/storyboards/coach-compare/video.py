@@ -21,7 +21,8 @@ VOICES = {"narrator": "JBFqnCBsd6RMkjVDRZzb",  # George
           "mia": "EXAVITQu4vr4xnSDxMaL",       # Sarah
           "lucy": "FGY2WhTYpPnrIDTdsKH5"}      # Laura
 STYLE = {"narrator": 0.3, "ben": 0.45, "mia": 0.35, "lucy": 0.5}
-GAP = 0.12
+GAP = 0.1
+TEMPO = {"narrator": 1.3, "ben": 1.15, "mia": 1.15, "lucy": 1.15}  # v3 ignores speed -> pitch-preserving atempo
 SPEED = {"narrator": 1.15, "ben": 1.08, "mia": 1.08, "lucy": 1.1}
 ASK = ("in", "Hey! How do I join?")
 
@@ -53,28 +54,28 @@ SCENES = [
          vis=split(half("l", [ASK], [("asleep", 0), ("stressed", 2)], "x", "14 hrs later", extra=say("l", "Oh no… 14 hours ago.", "BEN")),
                    half("r", [ASK, ("out", "Hey! Love that you reached out 🙌 What's your goal right now?")], [("focused", 0)], "ok", "12 sec")),
          cap='Ben sees it tomorrow. Mia’s DMs answer in <span class="hlo">seconds.</span>',
-         lines=[("lucy", "Hey! How do I join?"), ("narrator", "Ben sees it the next morning."), ("ben", "Oh no… fourteen hours ago."),
+         lines=[("lucy", "[excited] Hey! How do I join?"), ("narrator", "Ben sees it the next morning."), ("ben", "[yawns] Oh no… fourteen hours ago."),
                 ("narrator", "Mia's DMs answer in seconds.")],
          msgs=[0, 0, (3, 0.3)], says=[2], clocks={"l": 1, "r": 3}, marks=3),
     dict(label="Round 2 · First reply", right="Score ✓ 2", num="2",
          vis=split(half("l", [ASK, ("out", "Here's my link 👉 join.link")], [("tired", 0)], "x"),
                    half("r", [ASK, ("out", "Love that! What's the main thing you want to change?"), ("in", "I just want to finally be consistent")], [("calm", 0)], "ok")),
          cap='Ben sends a link. Mia’s DMs <span class="hlo">ask a question.</span>',
-         lines=[("narrator", "Ben sends a link. Mia's DMs ask a question."), ("lucy", "I just want to finally be consistent.")],
+         lines=[("narrator", "Ben sends a link. Mia's DMs ask a question."), ("lucy", "[hopeful] I just want to finally be consistent.")],
          msgs=[0, (0, 0.4), 0, (0, 1.5), 1], says=[], marks=1),
     dict(label="Round 3 · The cost question", right="Score ✓ 3", num="3",
          vis=split(half("l", [("in", "How much is it?"), ("out", "Uh… I can do a discount?")], [("tired", 0), ("panic", 1)], "x", extra=say("l", "Uh… discount?", "BEN")),
                    half("r", [("in", "How much is it?"), ("out", "Depends on your goal. Quick call to see if it's a fit?"), ("in", "Sure!")], [("calm", 0), ("happy", 3)], "ok")),
          cap='Mia’s DMs don’t drop a price. They <span class="hlo">book a call.</span>',
-         lines=[("lucy", "How much is it?"), ("ben", "Uh… I can do a discount?"), ("narrator", "Mia's DMs don't drop a price. They book a call."), ("lucy", "Sure!")],
+         lines=[("lucy", "[curious] How much is it?"), ("ben", "[nervous] Uh… I can do a discount?"), ("narrator", "Mia's DMs don't drop a price. They book a call."), ("lucy", "[happy] Sure!")],
          msgs=[0, 1, 0, (2, 0.6), 3], says=[1], marks=3),
     dict(label="Round 4 · Ghosted", right="Score ✓ 4", num="4",
          vis=split(half("l", [("out", "So… do you want to join?")], [("tired", 0), ("confused", 1)], "x", "no reply", seen=True, extra=say("l", "Guess she’s not interested.", "BEN")),
                    half("r", [("out", "Day 1: still keen to sort this?"), ("out", "Day 3: saved you a spot for Thursday 👀"), ("in", "Omg sorry! Yes, let's do it")],
                         [("coffee", 0), ("happy", 3)], "ok", "day 1 · 3")),
          cap='Ben gives up. Mia’s DMs <span class="hlo">follow up.</span>',
-         lines=[("narrator", "Ben gets left on seen… and gives up."), ("ben", "Guess she's not interested."),
-                ("narrator", "Mia's DMs follow up. Day one. Day three."), ("lucy", "Omg sorry! Yes, let's do it.")],
+         lines=[("narrator", "Ben gets left on seen… and gives up."), ("ben", "[sighs] Guess she's not interested."),
+                ("narrator", "Mia's DMs follow up. Day one. Day three."), ("lucy", "[apologetic] Omg sorry! Yes, let's do it.")],
          msgs=[0, (2, 0.2), (2, 1.4), 3], says=[1], clocks={"l": 0, "r": 2}, marks=3),
     dict(label="Round 5 · The twist", right="Score ✓ 5", num="5", twist=True,
          vis=split(half("l", [("in", "hello??"), ("in", "u there?"), ("in", "still taking clients?")], [("2am", 0)], "x", "02:14 AM",
@@ -82,8 +83,8 @@ SCENES = [
                    half("r", [("in", "Yes, let's do it"), ("out", "Booked ✓ Thursday 3 PM. Mia's excited to meet you!"), ("in", "🙌🙌")], [("asleep", 0)], "ok", "asleep",
                         extra='<div class="setter">HER SETTER</div><div class="stamp2">BOOKED</div>')),
          cap='Mia doesn’t answer her DMs. <span class="hlo">Her setter does.</span>',
-         lines=[("narrator", "Two AM. Ben is still typing."), ("ben", "Why am I always in my DMs?"),
-                ("narrator", "Mia is asleep. Because Mia doesn't answer her DMs… her setter does.")],
+         lines=[("narrator", "Two AM. Ben is still typing."), ("ben", "[exhausted] Why am I always in my DMs?"),
+                ("narrator", "Mia is asleep. [dramatic pause] Because Mia doesn't answer her DMs… [whispers] her setter does.")],
          msgs=[0, (0, 0.5), (0, 1.0), (2, 0.2), (2, 1.0), (2, 1.6)], says=[1], clocks={"l": 0, "r": 2}, marks=2,
          kw={".setter": ("setter", 0), ".stamp2": ("does.", 0.15)}),
     dict(label="Your turn", right="Now", num="→", cta=True,
@@ -93,7 +94,7 @@ SCENES = [
              + say("r", "Want your DMs handled like mine?", "MIA", "left:250px;top:330px")
              + say("l", "Wait… what’s a setter?", "BEN", "left:8px;top:300px"),
          cap='Comment <span class="hl">"SETTER"</span>',
-         lines=[("mia", "Want your DMs handled like mine? Comment SETTER."), ("ben", "Wait… what's a setter?")],
+         lines=[("mia", "[confident] Want your DMs handled like mine? [playful] Comment SETTER."), ("ben", "[confused] Wait… what's a setter? [laughs]")],
          says=[0, 1]),
 ]
 
@@ -113,25 +114,25 @@ ASK_VIS = (split(half_plain("l", [ASK], [("tired", 0)]), half_plain("r", [ASK], 
            + '<div class="askbig" style="--at:-400ms"><b><i></i>LUCY · NEW MESSAGE · TO BOTH</b>Hey! How do I join?</div>')
 S0A = dict(key="s0A", label="Same DMs", right="Two coaches", num="?", hook=True, vis=ASK_VIS,
            cap='Same DMs. What happens after <span class="hl">“How do I join?”</span>',
-           lines=[("narrator", "Two coaches. Same number of DMs. Ben makes five K a month. Mia makes fifty K. What happens after…"),
-                  ("lucy", "Hey! How do I join?")],
+           lines=[("narrator", "Two coaches. Same number of DMs. Ben makes five K a month. Mia makes fifty K. [curious] What happens after…"),
+                  ("lucy", "[excited] Hey! How do I join?")],
            msgs=[1, (1, 0.12)], kw={".money.l": ("Ben", 0), ".money.r": ("Mia", 0)})
 S0C = dict(key="s0C", label="Meet Ben & Mia", right="Same DMs", num="?", hook=True, vis=ASK_VIS,
            cap='Same DMs. Different coaches. <span class="hl">What happens next?</span>',
-           lines=[("narrator", "This is Ben. Fitness coach, five K a month. This is Mia. Nutrition coach, fifty K. Same DMs. What happens after…"),
-                  ("lucy", "Hey! How do I join?")],
+           lines=[("narrator", "This is Ben. Fitness coach, five K a month. This is Mia. Nutrition coach, fifty K. Same DMs. [curious] What happens after…"),
+                  ("lucy", "[excited] Hey! How do I join?")],
            msgs=[1, (1, 0.12)], kw={".money.l": ("Ben", 0), ".money.r": ("Mia", 0)})
 S1N = dict(SCENES[1], key="s1n",
            vis=split(half("l", [ASK], [("asleep", 0), ("stressed", 1)], "x", "14 hrs later", extra=say("l", "Oh no… 14 hours ago.", "BEN")),
                      half("r", [ASK, ("out", "Hey! Love that you reached out 🙌 What's your goal right now?")], [("focused", 0)], "ok", "12 sec")),
-           lines=[("narrator", "Ben sees it the next morning."), ("ben", "Oh no… fourteen hours ago."), ("narrator", "Mia's DMs answer in seconds.")],
+           lines=[("narrator", "Ben sees it the next morning."), ("ben", "[yawns] Oh no… fourteen hours ago."), ("narrator", "Mia's DMs answer in seconds.")],
            msgs=[0, 0, (2, 0.3)], says=[1], clocks={"l": 0, "r": 2}, marks=2)
 BODY = SCENES[2:]
 VARIANTS = {"A": [S0A, S1N] + BODY, "B": SCENES, "C": [S0C, S1N] + BODY}
 
 
 def lid(key, li):
-    return f"cc_{key}_l{li}"
+    return f"cc3_{key}_l{li}"
 
 
 def cmd_vo():
@@ -141,8 +142,8 @@ def cmd_vo():
         for li, (spk, text) in enumerate(s["lines"]):
             p = os.path.join(build, "vo", lid(s["key"], li))
             if os.path.exists(p + ".json"): continue
-            body = {"text": text, "model_id": "eleven_multilingual_v2",
-                    "voice_settings": {"stability": 0.45, "similarity_boost": 0.8, "style": STYLE[spk], "use_speaker_boost": True, "speed": SPEED[spk]}}
+            body = {"text": text, "model_id": "eleven_v3",
+                    "voice_settings": {"stability": 0.5, "similarity_boost": 0.8, "style": STYLE[spk], "use_speaker_boost": True, "speed": SPEED[spk]}}
             json.dump(body, open(p + ".req", "w"))
             subprocess.run(["curl", "-sS", "-X", "POST", f"https://api.elevenlabs.io/v1/text-to-speech/{VOICES[spk]}/with-timestamps?output_format=mp3_44100_128",
                             "-H", "xi-api-key: proxy-injected", "-H", "Content-Type: application/json", "-d", "@" + p + ".req", "-o", p + ".json"], check=True)
@@ -162,7 +163,7 @@ def words(al):
             if not cur: s0 = st[i]
             cur += c
     if cur: out.append((cur, s0, en[-1]))
-    return out
+    return [w for w in out if not w[0].startswith("[")]  # drop v3 emotion tags
 
 
 def set_at(html, selector_class, times_ms):
@@ -235,10 +236,14 @@ def cmd_html(v="B"):
         cur = 0.15 if si else 0.05
         lines = []
         for li, (spk, text) in enumerate(s["lines"]):
-            al = json.load(open(os.path.join(build, "vo", lid(s["key"], li) + ".json")))["alignment"]
+            base = os.path.join(build, "vo", lid(s["key"], li)); tp = TEMPO[spk]
+            if not os.path.exists(base + "_f.mp3"):
+                subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", base + ".mp3", "-filter:a", f"atempo={tp}", base + "_f.mp3"], check=True)
+            al = json.load(open(base + ".json"))["alignment"]
+            al = {k: ([x / tp for x in v] if k.endswith("_seconds") else v) for k, v in al.items()}
             ws = words(al); dur = al["character_end_times_seconds"][-1]
             lines.append(dict(spk=spk, at=cur, dur=dur, words=[(w, cur + a, cur + b) for w, a, b in ws]))
-            cues.append({"id": lid(s["key"], li), "at": round(t + cur, 3)})
+            cues.append({"id": lid(s["key"], li) + "_f", "at": round(t + cur, 3)})
             if spk == "narrator": wt_narr += [cur + a for _, a, _ in ws]
             wt_all += [cur + a for _, a, _ in ws]
             cur += dur + GAP
