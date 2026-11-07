@@ -67,12 +67,12 @@ frames = [
                    half("r", [("out", "Day 1: still keen to sort this?"), ("out", "Day 3: saved you a spot for Thursday 👀"), ("in", "Omg sorry! Yes, let's do it")], "coffee", "ok", "day 1 · 3 · 7")),
          cap='He gives up. She <span class="hlo">follows up.</span>',
          vo="He gives up. She follows up."),
-    dict(label="Round 5 · Who answers", right="Score ✓ 5", num="5",
+    dict(label="Round 5 · The difference", right="Score ✓ 5", num="5",
          vis=split(half("l", [("in", "hello??"), ("in", "u there?"), ("in", "still taking clients?")], "2am", "x", "02:14 AM"),
                    half("r", [("in", "How do I join?"), ("out", "Got you! Thursday 3 PM works?"), ("in", "Perfect 🙌")], "asleep", "ok", "asleep",
-                        extra=f'<div class="setter">SETTER</div><div class="stamp2">BOOKED</div>')),
-         cap='And she doesn’t answer DMs <span class="hlo">alone.</span>',
-         vo="And she doesn't answer DMs alone."),
+                        extra=f'<div class="setter">HER SETTER</div><div class="stamp2">BOOKED</div>')),
+         cap='He’s still typing at 2&nbsp;AM. <span class="hlo">Her setter already booked the call.</span>',
+         vo="He's still typing at 2 AM. Her setter already booked the call."),
     dict(label="Your turn", right="Now", num="→",
          vis='<div class="key">SETTER</div><div class="cbox"><i></i>Add a comment…<b>&#10148;</b></div>'
              + f'<div class="cta-chr">{C.char_svg("high", "thumbs", 170)}</div>',
@@ -112,7 +112,7 @@ EXTRA_CSS = f"""
 .who .chr{{display:block}}
 .mark{{position:absolute;top:70px;width:44px;height:44px;border-radius:50%;background:{K};color:#fff;font:900 24px Inter;display:grid;place-items:center;z-index:5;transform:rotate(-8deg);box-shadow:0 4px 0 rgba(0,0,0,.25)}}
 .mark.l{{right:12px}}.mark.r{{right:12px;background:{O}}}
-.setter{{position:absolute;top:300px;left:8px;z-index:6;background:{T_};color:#fff;font:900 18px Inter;padding:6px 12px;border-radius:6px;transform:rotate(-6deg);box-shadow:0 4px 0 rgba(0,0,0,.25)}}
+.setter{{position:absolute;top:318px;left:2px;z-index:6;background:{T_};color:#fff;font:900 18px Inter;padding:6px 12px;border-radius:6px;transform:rotate(-6deg);box-shadow:0 4px 0 rgba(0,0,0,.25)}}
 .stamp2{{position:absolute;top:290px;right:4px;z-index:6;padding:4px 10px;border:4px solid {O};color:{O};font:900 24px Inter;border-radius:8px;transform:rotate(-12deg);background:rgba(244,240,232,.8)}}
 .cta-chr{{position:absolute;right:20px;bottom:-30px}}
 .tag{{z-index:10}}
