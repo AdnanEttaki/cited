@@ -7,7 +7,7 @@ here = os.path.dirname(os.path.abspath(__file__))
 INK, ORANGE, CREAM, AMBER, TEAL = "#1B1B1B", "#D8541E", "#F4F0E8", "#F2A33A", "#1E9E95"
 
 LOW = dict(skin="#E7B48E", skin_d="#C98E68", hair="#3B2A20", top="#6B6862", top_d="#55524D")
-HIGH = dict(skin="#8D5A3B", skin_d="#6E432B", hair="#1F1612", top=ORANGE, top_d="#A93F14")
+HIGH = dict(skin="#F2C8A8", skin_d="#D9A07F", hair="#E6BC5C", hair_d="#C2933A", top=ORANGE, top_d="#A93F14")
 
 EXPR = {
     "low": ["tired", "stressed", "asleep", "panic", "confused", "2am"],
@@ -128,17 +128,21 @@ def high_body(c):
 
 
 def high_head(c, e, b, m, x):
-    hair_back = "".join(f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{c["hair"]}"/>' for cx, cy, r in
-                        [(72, 118, 28), (168, 118, 28), (78, 158, 24), (162, 158, 24), (120, 78, 50), (88, 86, 30), (152, 86, 30)])
-    bun = f'<circle cx="120" cy="34" r="22" fill="{c["hair"]}"/><rect x="104" y="48" width="32" height="8" rx="4" fill="{ORANGE}"/>'
+    hd = c.get("hair_d", c["hair"])
+    hair_back = (f'<ellipse cx="120" cy="112" rx="64" ry="68" fill="{c["hair"]}"/>'
+                 f'<path d="M62 108 C48 150 52 196 72 226 C92 222 90 186 92 150 Z" fill="{c["hair"]}"/>'
+                 f'<path d="M178 108 C192 150 188 196 168 226 C148 222 150 186 148 150 Z" fill="{c["hair"]}"/>'
+                 f'<path d="M64 150 q8 18 0 36 M176 150 q-8 18 0 36 M70 196 q6 10 2 22 M170 196 q-6 10 -2 22" stroke="{hd}" stroke-width="3" fill="none" stroke-linecap="round"/>')
+    bun = ""
     lashes = "" if e in ("happy", "closed") else f'<path d="M89 117 l-5 -4 M151 117 l5 -4" stroke="{INK}" stroke-width="2.5" stroke-linecap="round"/>'
     return (f'<g filter="url(#cut)">{hair_back}{bun}</g>'
             f'<g filter="url(#cut)"><ellipse cx="120" cy="124" rx="50" ry="58" fill="{c["skin"]}"/></g>'
             f'<circle cx="70" cy="140" r="5" fill="{AMBER}"/><circle cx="170" cy="140" r="5" fill="{AMBER}"/>'
-            f'<path d="M80 104 C90 74 150 74 160 104 C150 90 130 84 120 92 C108 84 92 90 80 104 Z" fill="{c["hair"]}"/>'
-            f'<ellipse cx="94" cy="146" rx="9" ry="5" fill="#C2554A" opacity=".35"/><ellipse cx="146" cy="146" rx="9" ry="5" fill="#C2554A" opacity=".35"/>'
+            f'<path d="M70 118 C70 62 160 52 172 112 C160 86 128 76 100 92 C88 100 78 108 70 118 Z" fill="{c["hair"]}"/>'
+            f'<path d="M100 92 C120 80 150 84 166 104" stroke="{c.get("hair_d", c["hair"])}" stroke-width="3" fill="none" stroke-linecap="round"/>'
+            f'<ellipse cx="94" cy="146" rx="9" ry="5" fill="#E8826E" opacity=".45"/><ellipse cx="146" cy="146" rx="9" ry="5" fill="#E8826E" opacity=".45"/>'
             f'<path d="M118 132 q-4 11 4 12" stroke="{c["skin_d"]}" stroke-width="3" fill="none" stroke-linecap="round"/>'
-            + eyes(c, e) + lashes + brows(b) + mouth(m, "#5A2219"))
+            + eyes(c, e) + lashes + brows(b) + mouth(m, "#B24A3E"))
 
 
 def char_svg(who, expr, size=200):
