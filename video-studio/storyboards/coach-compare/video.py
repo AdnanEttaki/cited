@@ -98,15 +98,48 @@ SCENES = [
 ]
 
 
-def lid(si, li):
-    return f"cc_s{si}_l{li}"
+for _i, _s in enumerate(SCENES): _s["key"] = f"s{_i}"
+
+
+def half_plain(side, msgs, exprs):
+    x0 = 0 if side == "l" else 270
+    who = "low" if side == "l" else "high"
+    layers = "".join(f'<div class="ex ex{j}" data-line="{ln}">{C.char_svg(who, e, 150)}</div>' for j, (e, ln) in enumerate(exprs))
+    return (f'<div class="half {side}" style="left:{x0}px">' + nametag(side) + mini(msgs, 26, "Lucy")
+            + f'<div class="who" data-side="{side}"><div class="bobw">{layers}</div></div></div>')
+
+
+ASK_VIS = (split(half_plain("l", [ASK], [("tired", 0)]), half_plain("r", [ASK], [("calm", 0)]))
+           + '<div class="askbig" style="--at:-400ms"><b><i></i>LUCY · NEW MESSAGE · TO BOTH</b>Hey! How do I join?</div>')
+S0A = dict(key="s0A", label="Same DMs", right="Two coaches", num="?", hook=True, vis=ASK_VIS,
+           cap='Same DMs. What happens after <span class="hl">“How do I join?”</span>',
+           lines=[("narrator", "Two coaches. Same number of DMs. Ben makes five K a month. Mia makes fifty K. What happens after…"),
+                  ("lucy", "Hey! How do I join?")],
+           msgs=[1, (1, 0.12)], kw={".money.l": ("Ben", 0), ".money.r": ("Mia", 0)})
+S0C = dict(key="s0C", label="Meet Ben & Mia", right="Same DMs", num="?", hook=True, vis=ASK_VIS,
+           cap='Same DMs. Different coaches. <span class="hl">What happens next?</span>',
+           lines=[("narrator", "This is Ben. Fitness coach, five K a month. This is Mia. Nutrition coach, fifty K. Same DMs. What happens after…"),
+                  ("lucy", "Hey! How do I join?")],
+           msgs=[1, (1, 0.12)], kw={".money.l": ("Ben", 0), ".money.r": ("Mia", 0)})
+S1N = dict(SCENES[1], key="s1n",
+           vis=split(half("l", [ASK], [("asleep", 0), ("stressed", 1)], "x", "14 hrs later", extra=say("l", "Oh no… 14 hours ago.", "BEN")),
+                     half("r", [ASK, ("out", "Hey! Love that you reached out 🙌 What's your goal right now?")], [("focused", 0)], "ok", "12 sec")),
+           lines=[("narrator", "Ben sees it the next morning."), ("ben", "Oh no… fourteen hours ago."), ("narrator", "Mia's DMs answer in seconds.")],
+           msgs=[0, 0, (2, 0.3)], says=[1], clocks={"l": 0, "r": 2}, marks=2)
+BODY = SCENES[2:]
+VARIANTS = {"A": [S0A, S1N] + BODY, "B": SCENES, "C": [S0C, S1N] + BODY}
+
+
+def lid(key, li):
+    return f"cc_{key}_l{li}"
 
 
 def cmd_vo():
     os.makedirs(os.path.join(build, "vo"), exist_ok=True)
-    for si, s in enumerate(SCENES):
+    uniq = {s["key"]: s for v in VARIANTS.values() for s in v}
+    for s in uniq.values():
         for li, (spk, text) in enumerate(s["lines"]):
-            p = os.path.join(build, "vo", lid(si, li))
+            p = os.path.join(build, "vo", lid(s["key"], li))
             if os.path.exists(p + ".json"): continue
             body = {"text": text, "model_id": "eleven_multilingual_v2",
                     "voice_settings": {"stability": 0.45, "similarity_boost": 0.8, "style": STYLE[spk], "use_speaker_boost": True, "speed": SPEED[spk]}}
@@ -115,7 +148,7 @@ def cmd_vo():
                             "-H", "xi-api-key: proxy-injected", "-H", "Content-Type: application/json", "-d", "@" + p + ".req", "-o", p + ".json"], check=True)
             d = json.load(open(p + ".json")); assert "audio_base64" in d, d
             open(p + ".mp3", "wb").write(base64.b64decode(d.pop("audio_base64"))); json.dump(d, open(p + ".json", "w"))
-            print(lid(si, li), spk, round(d["alignment"]["character_end_times_seconds"][-1], 2))
+            print(lid(s["key"], li), spk, round(d["alignment"]["character_end_times_seconds"][-1], 2))
 
 
 def words(al):
@@ -184,22 +217,28 @@ CSS = """
 @keyframes hideAt{from{opacity:1}to{opacity:0}}
 @keyframes showAt{from{opacity:0}to{opacity:1}}
 .cf{z-index:9}
+.askbig{position:absolute;left:50%;top:62px;width:400px;margin-left:-200px;z-index:7;background:#262626;color:#fff;border-radius:26px;padding:16px 22px 18px;
+ font:700 34px/1.15 Inter;letter-spacing:-.02em;text-align:center;box-shadow:0 0 0 4px #F2A33A,0 24px 50px rgba(0,0,0,.4);rotate:-2deg;
+ animation:pop .5s cubic-bezier(.2,.9,.3,1.6) calc(var(--at,0ms) - var(--pre)) both,bob 2.4s ease-in-out .6s infinite alternate none}
+.askbig b{display:flex;align-items:center;justify-content:center;gap:8px;font:800 11px Inter;letter-spacing:.14em;color:#F2A33A;margin-bottom:6px}
+.askbig b i{width:10px;height:10px;border-radius:50%;background:#FF3B5C}
 .hook-l.who,.hook-r.who,.cta-chr.who,.cta-ben.who{margin-left:0}.hook-r.who,.cta-chr.who{left:auto}
 """
 
 
-def cmd_html():
+def cmd_html(v="B"):
+    SC = VARIANTS[v]
     t, secs, cues, sfx = 0.0, [], [], []
-    n = len(SCENES)
-    for si, s in enumerate(SCENES):
+    n = len(SC)
+    for si, s in enumerate(SC):
         start = [0.0]; wt_narr, wt_all = [], []
         cur = 0.15 if si else 0.05
         lines = []
         for li, (spk, text) in enumerate(s["lines"]):
-            al = json.load(open(os.path.join(build, "vo", lid(si, li) + ".json")))["alignment"]
+            al = json.load(open(os.path.join(build, "vo", lid(s["key"], li) + ".json")))["alignment"]
             ws = words(al); dur = al["character_end_times_seconds"][-1]
             lines.append(dict(spk=spk, at=cur, dur=dur, words=[(w, cur + a, cur + b) for w, a, b in ws]))
-            cues.append({"id": lid(si, li), "at": round(t + cur, 3)})
+            cues.append({"id": lid(s["key"], li), "at": round(t + cur, 3)})
             if spk == "narrator": wt_narr += [cur + a for _, a, _ in ws]
             wt_all += [cur + a for _, a, _ in ws]
             cur += dur + GAP
@@ -287,13 +326,13 @@ window.render=t=>{{let cur=0;S.forEach((s,i)=>{{if(t>=s.t0)cur=i}});
   else{{a.style.transform=`scale(${{.7+.3*p}})`;a.style.opacity=p;b.style.transform=`scale(${{1+p*.6}})`;b.style.filter=`blur(${{p*10}}px)`}}
  }} else S.forEach(s=>s.el.style.opacity='');}};
 </script></body></html>'''
-    open(os.path.join(here, "video_story.html"), "w").write(html)
-    json.dump({"duration": round(t, 3), "fps": 30, "cues": cues, "sfx": sfx}, open(os.path.join(here, "timeline_story.json"), "w"), indent=1)
-    print("duration", round(t, 2))
+    open(os.path.join(here, f"video_story_{v}.html"), "w").write(html)
+    json.dump({"duration": round(t, 3), "fps": 30, "cues": cues, "sfx": sfx}, open(os.path.join(here, f"timeline_story_{v}.json"), "w"), indent=1)
+    print(v, "duration", round(t, 2))
 
 
-def cmd_mix():
-    T = json.load(open(os.path.join(here, "timeline_story.json"))); dur = T["duration"]
+def cmd_mix(v="B"):
+    T = json.load(open(os.path.join(here, f"timeline_story_{v}.json"))); dur = T["duration"]
     inputs, filt, vo, fx = [], [], [], []
     def inp(p, loop=False):
         if loop: inputs.extend(["-stream_loop", "-1"])
@@ -311,14 +350,17 @@ def cmd_mix():
     filt.append(f"{''.join(fx)}amix=inputs={len(fx)}:normalize=0[fx]")
     filt.append("[vo]highpass=f=80,acompressor=threshold=-20dB:ratio=3:attack=5:release=80,equalizer=f=3500:t=q:w=1:g=2[vop]")
     filt.append(f"[vop][musd][fx]amix=inputs=3:normalize=0,apad,atrim=0:{dur},loudnorm=I=-14:TP=-1.0:LRA=9,aresample=48000[out]")
-    mix = os.path.join(build, "cc_mix.m4a")
+    mix = os.path.join(build, f"cc_mix_{v}.m4a")
     subprocess.run(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(filt), "-map", "[out]", "-c:a", "aac", "-b:a", "256k", mix], check=True)
     out = os.path.join(here, "out"); os.makedirs(out, exist_ok=True)
-    final = os.path.join(out, "ben_vs_mia_9x16.mp4")
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", os.path.join(build, "paper_video_story.mp4"), "-i", mix, "-map", "0:v", "-map", "1:a",
+    final = os.path.join(out, f"ben_vs_mia_hook{v}_9x16.mp4")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", os.path.join(build, f"paper_video_story_{v}.mp4"), "-i", mix, "-map", "0:v", "-map", "1:a",
                     "-c:v", "copy", "-c:a", "copy", "-movflags", "+faststart", final], check=True)
     print("final ->", final)
 
 
 if __name__ == "__main__":
-    {"vo": cmd_vo, "html": cmd_html, "mix": cmd_mix}[sys.argv[1]]()
+    c = sys.argv[1]
+    if c == "vo": cmd_vo()
+    elif c == "html": [cmd_html(v) for v in (sys.argv[2:] or "ABC")]
+    elif c == "mix": cmd_mix(sys.argv[2])
