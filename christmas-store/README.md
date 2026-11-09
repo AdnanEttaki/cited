@@ -1,4 +1,4 @@
-# Evergleam — Christmas Shopify Brand Kit & Store Template (images)
+# TwinkleTree — Christmas Shopify Brand Kit & Store Template (images)
 
 Final images are in `images/` (2x resolution, 2880px wide):
 
