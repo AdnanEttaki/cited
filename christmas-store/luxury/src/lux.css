@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+:root{--onyx:#0E0E0C;--ink:#1A1A17;--ivory:#F7F4EE;--paper:#FFFFFF;--champ:#C8A96A;--champ-2:#E2CC9A;--pine:#1F3A30;--stone:#8A857C;--line:#E4DED3;--night:#0B1210}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ivory);color:var(--ink);font-family:Inter,sans-serif;font-weight:400;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.serif,h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;letter-spacing:-.01em;line-height:1.05}
+.lbl{font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:500;color:var(--stone)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 48px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--onyx);color:var(--ivory);font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;padding:20px 28px;border-radius:2px}
+.btn.light{background:transparent;color:var(--onyx);border:1px solid var(--onyx)}
+.btn.champ{background:var(--champ);color:var(--onyx)}
+.hair{height:1px;background:var(--line)}
+.stars{color:var(--champ);letter-spacing:3px;font-family:'DejaVu Sans',sans-serif;font-size:12px}
+.ico{width:20px;height:20px;flex:none}
+.row{display:flex;align-items:center;gap:10px}
+.night{background:radial-gradient(ellipse at 50% 30%,#18241f 0%,#0B1210 60%,#070a09 100%);position:relative;overflow:hidden}
+.tree svg{display:block;width:100%;height:auto}
