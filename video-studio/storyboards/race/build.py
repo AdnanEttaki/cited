@@ -15,13 +15,15 @@ def coach(i, name, ico, state, timer, win=False, x=0, y=0, rot=0):
             f'<b>{name} coach</b><div class="tm">{timer}</div><small>{state}</small></div>')
 
 
-def cards(states, timers, win=-1):
+def cards(states, timers, win=-1, dyn=False):
     pos = [(20, 20, -3), (190, 0, 2), (360, 24, -2), (70, 250, 2), (280, 262, -3)]
     out = ""
     for i, (n, ico) in enumerate(NICHES):
         x, y, r = pos[i]
         w = i == win
-        out += coach(i, n if not w else "DMSetter", ico if not w else "☁️", states[i], timers[i], w, x, y, r)
+        c = coach(i, n if not w else "DMSetter", ico if not w else logo(52), states[i], timers[i], w, x, y, r)
+        if dyn: c = c.replace('class="tm"', f'class="tm" data-k="{"win" if w else "slow"}"')
+        out += c
     return out
 
 
@@ -32,9 +34,9 @@ S = [
   + tagc("11:41 PM", 40, 20, -5)),
  (4, 9, [("SAME MESSAGE. SAME MINUTE. ", ""), ("FIVE DIFFERENT COACHES.", "o")],
   cards(["waiting…"] * 5, ["0:00"] * 5)),
- (9, 16, [("FOUR WERE ", ""), ("ASLEEP, BUSY", "o"), (", OR AT DINNER. ONE REPLIED IN ", ""), ("38 SECONDS.", "o")],
-  cards(["😴 asleep", "✈ on a flight", "🍽 at dinner", "📞 in a call", "replied ✓"], ["9:14", "9:14", "9:14", "9:14", "0:38"], win=4).replace('class="cc win"', 'class="cc win"')),
- (16, 22, [("SHE DIDN'T PICK THE BEST COACH. ", ""), ("SHE PICKED THE FIRST ONE ", "o"), ("WHO ANSWERED.", "")],
+ (9, 16, [("FOUR WERE ", ""), ("ASLEEP OR BUSY.", "o"), (" ONE REPLIED IN ", ""), ("38 SECONDS.", "o")],
+  cards(["😴 asleep", "✈ on a flight", "🍽 at dinner", "📞 in a call", "replied ✓"], ["9:14", "9:14", "9:14", "9:14", "0:38"], win=4, dyn=True)),
+ (16, 22, [("SHE DIDN'T PICK THE BEST. ", ""), ("SHE PICKED THE FIRST.", "o")],
   phone([("in", "Hi! How does your coaching work? 🙌"), ("out", "Hey! Love that you reached out 🙌 What's your goal right now?"), ("in", "grow my client list"), ("out", "Got you. Quick call tomorrow 3 PM to see if it's a fit?")], x=80, y=20, rot=-2, w=290, h=420, seen=False, name="New lead", hl=1)
   + f'<div class="cl" style="left:350px;top:20px">{logo(120)}</div>' + tagc("FIRST TO ANSWER", 330, 170, 6)),
  (22, 27, [("BY MORNING, THE CALL WAS ", ""), ("BOOKED.", "o")],
