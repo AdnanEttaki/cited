@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const { chromium } = createRequire(import.meta.url)('playwright');
 const here = path.dirname(fileURLToPath(import.meta.url));
 const b = await chromium.launch();
-const p = await b.newPage({ viewport: { width: 2740, height: 990 }, deviceScaleFactor: 1 });
+const p = await b.newPage({ viewport: { width: 3830, height: 990 }, deviceScaleFactor: 1 });
 await p.goto(pathToFileURL(path.join(here, 'storyboard.html')).href);
 await p.evaluate(() => document.fonts.ready);
 await p.screenshot({ path: path.join(here, 'storyboard.jpg'), type: 'jpeg', quality: 92, fullPage: true });

@@ -12,6 +12,7 @@ import characters as C  # noqa: E402
 
 K, O, T_, A = ns["K"], ns["O"], ns["T"], ns["A"]
 phone, tag = ns["phone"], ns["tag"]
+LOGO = open(os.path.join(studio, "brand", "logo", "svg", "mark_primary.svg")).read()
 BASE_CSS = re.search(r"<style>(.*?)</style>", ns["html"], re.S).group(1)
 
 
@@ -40,6 +41,13 @@ FRAMES = [
              + ben("panic", 170, 320, 280) + say("Sorry, just saw this…", 300, 230),
          cap='You didn’t lose them to price. <span class="hl">You lost them to time.</span>',
          vo="BEN: [groans] Sorry, just saw this… / NARRATOR: You didn’t lose them to price. You lost them to time."),
+    dict(label="With DMSetter", right="11:41 PM", num="✓",
+         vis=phone([("in", "how much is your coaching?"), ("out", "Hey! Love that you reached out 🙌 What's your goal right now?"), ("in", "drop 8kg before summer"),
+                    ("out", "Got you. Quick call Thursday 3 PM to see if it's a fit?"), ("in", "yes!! 🙌")], x=30, y=10, rot=-2, w=290, h=400, seen=False, name="New lead", hl=1)
+             + f'<div class="mascot">{LOGO.replace('width="260" height="260"', 'width="130" height="130"')}</div>'
+             + '<div class="clock2">replied in 38 sec</div><div class="stamp3">BOOKED</div>' + ben("asleep", 130, 380, 320),
+         cap='With <span class="hlo">DMSetter</span>, you wake up to <span class="hl">booked calls.</span>',
+         vo="NARRATOR: With DMSetter, that same DM gets answered in seconds, qualified, and booked… while you sleep."),
     dict(label="The fix", right="7 replies", num="7",
          vis="".join(f'<div class="card7" style="left:{40 + i * 62}px;top:{110 + abs(3 - i) * 14}px;transform:rotate({(i - 3) * 7}deg);background:{[O, K, T_, "#FBFAF6", O, T_, K][i]}"><b>{i + 1}</b><i></i><i></i><i></i></div>' for i in range(7))
              + ben("confused", 140, 200, 310) + tag("copy-paste ready", A, 300, 40, 6),
@@ -50,6 +58,12 @@ FRAMES = [
              + tag("I’ll DM it to you", O, 330, 30, 8) + ben("tired", 120, 20, 330),
          cap='Comment <span class="hl">“SCRIPT”</span> and I’ll send them to you.',
          vo="NARRATOR: Comment SCRIPT, and I’ll send them to you."),
+    dict(label="DMSetter", right="Your DMs, handled", num="✓",
+         vis=f'<div class="endlogo">{LOGO.replace('width="260" height="260"', 'width="240" height="240"')}</div>'
+             + '<div class="wm">DM<span>Setter</span></div><div class="outc">'
+             + "".join(f'<div class="o"><i>✓</i>{t}</div>' for t in ["Replies in seconds, 24/7", "Qualifies every lead", "Follows up until they answer", "Books calls into your calendar"]) + '</div>',
+         cap='More booked calls. <span class="hlo">Zero DMs at 2 AM.</span>',
+         vo="NARRATOR: DMSetter. More booked calls. Zero DMs at two A.M."),
 ]
 
 EXTRA = f"""
@@ -61,6 +75,14 @@ EXTRA = f"""
 .card7{{position:absolute;width:80px;height:118px;border-radius:10px;box-shadow:0 6px 0 rgba(0,0,0,.2),0 14px 24px rgba(0,0,0,.18);padding:10px;color:#fff}}
 .card7 b{{font:900 26px Inter}}.card7 i{{display:block;height:5px;border-radius:3px;background:rgba(255,255,255,.55);margin-top:9px}}
 .card7:nth-child(4){{color:{K}}}.card7:nth-child(4) i{{background:rgba(0,0,0,.25)}}
+.mascot{{position:absolute;left:330px;top:40px;z-index:7;animation:none}}
+.clock2{{position:absolute;left:340px;top:190px;z-index:7;background:#fff;color:{O};font:800 15px Inter;padding:6px 12px;border-radius:16px;box-shadow:0 3px 0 #d0c8b8;transform:rotate(4deg)}}
+.stamp3{{position:absolute;left:330px;top:250px;z-index:7;padding:4px 12px;border:5px solid {O};color:{O};font:900 30px Inter;border-radius:10px;transform:rotate(-12deg);background:rgba(244,240,232,.85)}}
+.endlogo{{position:absolute;left:150px;top:10px}}
+.wm{{position:absolute;left:0;right:0;top:250px;text-align:center;font:900 64px Inter;letter-spacing:-.04em;color:{K}}}.wm span{{color:{O}}}
+.outc{{position:absolute;left:70px;right:70px;top:340px;display:grid;grid-template-columns:1fr 1fr;gap:10px}}
+.o{{background:#FBFAF6;border-radius:12px;padding:10px 12px;font:800 14px/1.25 Inter;display:flex;gap:8px;align-items:center;box-shadow:0 3px 0 #d8d1c3}}
+.o i{{font-style:normal;flex:none;width:24px;height:24px;border-radius:50%;background:{O};color:#fff;display:grid;place-items:center;font:900 13px Inter}}
 .key{{top:70px}}.cbox{{top:270px;font-weight:700;color:{K}}}
 """
 
