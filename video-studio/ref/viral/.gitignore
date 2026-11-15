@@ -1,0 +1,8 @@
+ref.mp4
+out/*
+!out/VIDEO.md
+!out/storyboard.jpg
+!out/video/
+!out/packaging/
+out/packaging/*
+!out/packaging/subtitles.srt
