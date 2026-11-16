@@ -34,7 +34,8 @@ h1{{position:absolute;left:22px;right:22px;top:34px;font:900 31px/1.04 Inter;let
 .foot{{position:absolute;left:22px;right:22px;bottom:16px;height:36px;display:flex;align-items:center;gap:10px}}.foot .cb{{flex:1;height:36px;border:2px solid {K};border-radius:18px;background:#fff;padding:0 14px;display:flex;align-items:center;font:800 13px Inter;box-shadow:3px 3px 0 rgba(0,0,0,.18)}}.foot .cb span{{display:inline-block;overflow:hidden;white-space:nowrap;width:0;animation:ty .5s steps(5) 8.65s both}}@keyframes ty{{to{{width:48px}}}}
 .cur{{position:absolute;z-index:30;width:22px;height:22px;margin:-2px 0 0 -2px;animation:cur {D}s linear both;filter:drop-shadow(1px 3px 2px rgba(0,0,0,.35))}}@keyframes cur{{{kf}}}
 .ring{{position:absolute;z-index:29;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:3px solid {O};animation:rg .5s ease-out var(--t) forwards;opacity:0}}@keyframes rg{{0%{{opacity:.9;scale:.3}}100%{{opacity:0;scale:1.6}}}}
-.lg{{position:absolute;right:22px;top:10px;}}"""
+.lg{{position:absolute;right:22px;top:10px;}}
+.fd{{position:absolute;inset:0;z-index:60;background:#EFE9DD;pointer-events:none;animation:fdk {D}s linear both}}@keyframes fdk{{0%{{opacity:1}}4%{{opacity:0}}94%{{opacity:0}}100%{{opacity:1}}}}"""
 html = f'''<!doctype html><html><head><meta charset="utf-8"><title>onepage</title><style>{CSS}</style></head><body><div id="s">
 <div class="top"><span>DRAWING NO. 038-2026 · SHEET 1 OF 1</span><span>REV <b>01</b></span></div>
 <h1 style="animation:cin .5s ease 0s both">Reply to every lead <span>in seconds.</span></h1><div class="sub" style="animation:cin .5s ease .3s both">One page: how a coach's inbox runs itself.</div>
@@ -44,7 +45,7 @@ html = f'''<!doctype html><html><head><meta charset="utf-8"><title>onepage</titl
 <div class="cd" style="top:344px;height:98px;--a:4.7s"><div class="lb">03 · ASK</div><div class="chat"><span class="b1">What's your goal right now?</span><span class="b2">Grow my client list</span></div></div>
 <div class="cd" style="top:454px;height:112px;--a:6.2s"><div class="ill">VALUES ILLUSTRATIVE</div><div class="lb">04 · RESULT</div><h2>Booked while you sleep</h2><div class="m"><div class="mc o"><small>FIRST REPLY</small><b class="cnt" data-k="mmss" data-t0="6.4" data-t1="7.4" data-to="38">0:00</b></div><div class="mc"><small>CALLS BOOKED</small><b class="cnt" data-k="int" data-t0="6.8" data-t1="7.8" data-to="3">0</b></div></div><div class="meter"><i></i></div></div>
 <div class="foot" style="animation:cin .4s ease 8.0s both"><div class="cb"><span>SPEED</span></div>{logo(34)}</div>
-{rings}<svg class="cur" viewBox="0 0 24 24"><path d="M3 2l17 8-7 2-3 7z" fill="#1B1B1B" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+<div class="fd"></div>{rings}<svg class="cur" viewBox="0 0 24 24"><path d="M3 2l17 8-7 2-3 7z" fill="#1B1B1B" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
 </div><script>
 const A=()=>document.getAnimations?document.getAnimations():[];window.ready=(async()=>{{await document.fonts.ready;A().forEach(a=>a.pause())}})();
 const C=[...document.querySelectorAll('.cnt')],f=(v,k)=>k==='int'?String(Math.round(v)):Math.floor(v/60)+':'+String(Math.floor(v)%60).padStart(2,'0');
@@ -55,6 +56,6 @@ def cmd_html():
 def cmd_export():
     out = os.path.join(here, "out"); os.makedirs(out, exist_ok=True); src = os.path.join(build, "onepage_video.mp4")
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", "-an", "-movflags", "+faststart", os.path.join(out, "onepage.mp4")], check=True)
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-vf", "fps=15,scale=640:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer:bayer_scale=4", "-loop", "0", os.path.join(out, "onepage.gif")], check=True)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-vf", "fps=15,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer:bayer_scale=4", "-loop", "0", os.path.join(out, "onepage.gif")], check=True)
     for f in ("onepage.mp4", "onepage.gif"): print(f, round(os.path.getsize(os.path.join(out, f)) / 1e6, 2), "MB")
 if __name__ == "__main__": {"html": cmd_html, "export": cmd_export}[sys.argv[1]]()
