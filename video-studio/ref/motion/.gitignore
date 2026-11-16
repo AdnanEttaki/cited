@@ -1,0 +1,7 @@
+ref.mp4
+out/*
+!out/VIDEO.md
+!out/storyboard.jpg
+!out/video/
+!out/audio.png
+out/packaging/
