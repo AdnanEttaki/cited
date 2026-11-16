@@ -7,8 +7,8 @@ K, O, CR, BL = "#1B1B1B", "#D8541E", "#F4F0E8", "#3A6FF0"
 D = 9.0
 def logo(px): return LOGO.replace('width="260" height="260"', f'width="{px}" height="{px}"')
 # cursor waypoints (time, x, y) in 540x675 space; click times
-WP = [(0, 470, 640), (1.0, 470, 640), (1.9, 440, 140), (2.15, 440, 140), (2.9, 42, 266), (3.2, 42, 266), (3.5, 42, 291), (3.8, 42, 291), (4.1, 42, 316), (4.4, 42, 316), (5.0, 300, 400), (6.6, 400, 520), (7.6, 400, 520), (8.3, 360, 622), (8.6, 360, 622), (9.0, 360, 622)]
-CLICKS = [2.15, 3.2, 3.8, 4.4, 8.6]
+WP = [(0, 470, 640), (1.0, 470, 640), (1.9, 440, 140), (2.15, 440, 140), (2.9, 42, 266), (3.2, 42, 266), (3.5, 42, 291), (3.8, 42, 291), (4.1, 42, 316), (4.4, 42, 316), (5.0, 300, 400), (6.6, 400, 520), (7.6, 400, 520), (7.9, 360, 622), (8.2, 360, 622), (9.0, 360, 622)]
+CLICKS = [2.15, 3.2, 3.8, 4.4, 8.0]
 kf = "".join(f"{t / D * 100:.3f}%{{left:{x}px;top:{y}px;animation-timing-function:cubic-bezier(.45,0,.2,1)}}" for t, x, y in WP)
 rings = "".join(f'<i class="ring" style="left:{x}px;top:{y}px;--t:{c}s"></i>' for c in CLICKS for (t, x, y) in [min(WP, key=lambda w: abs(w[0] - c))])
 CSS = f"""@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
@@ -31,7 +31,7 @@ h1{{position:absolute;left:22px;right:22px;top:34px;font:900 31px/1.04 Inter;let
 .m{{display:flex;gap:10px;margin-top:2px}}.mc{{flex:1;background:#fff;border:2px solid #cfc8b8;border-radius:7px;padding:6px 8px}}.mc small{{display:block;font:700 7.5px 'JetBrains Mono';color:#8a8372;letter-spacing:.06em}}.mc b{{display:block;font:900 24px Inter;letter-spacing:-.03em;color:{K};font-variant-numeric:tabular-nums}}.mc.o b{{color:{O}}}
 .meter{{height:9px;border:2px solid {K};border-radius:5px;margin-top:5px;overflow:hidden;background:#fff}}.meter i{{display:block;height:100%;background:{O};width:100%;transform-origin:left;animation:mf 1.2s ease-out 6.5s both}}@keyframes mf{{from{{scale:0 1}}}}
 .ill{{position:absolute;right:14px;top:-9px;background:{O};color:#fff;font:800 8px Inter;padding:3px 8px;border-radius:3px;rotate:4deg;animation:cin .3s ease 6.6s both}}
-.foot{{position:absolute;left:22px;right:22px;bottom:16px;height:36px;display:flex;align-items:center;gap:10px}}.foot .cb{{flex:1;height:36px;border:2px solid {K};border-radius:18px;background:#fff;padding:0 14px;display:flex;align-items:center;font:800 13px Inter;box-shadow:3px 3px 0 rgba(0,0,0,.18)}}.foot .cb span{{display:inline-block;overflow:hidden;white-space:nowrap;width:0;animation:ty .5s steps(5) 8.65s both}}@keyframes ty{{to{{width:48px}}}}
+.foot{{position:absolute;left:22px;right:22px;bottom:16px;height:36px;display:flex;align-items:center;gap:10px}}.foot .cb{{flex:1;height:36px;border:2px solid {K};border-radius:18px;background:#fff;padding:0 14px;display:flex;align-items:center;font:800 13px Inter;box-shadow:3px 3px 0 rgba(0,0,0,.18)}}.foot .cb span{{display:inline-block;overflow:hidden;white-space:nowrap;width:0;animation:ty .45s steps(5) 8.05s both}}@keyframes ty{{to{{width:48px}}}}
 .cur{{position:absolute;z-index:30;width:22px;height:22px;margin:-2px 0 0 -2px;animation:cur {D}s linear both;filter:drop-shadow(1px 3px 2px rgba(0,0,0,.35))}}@keyframes cur{{{kf}}}
 .ring{{position:absolute;z-index:29;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:3px solid {O};animation:rg .5s ease-out var(--t) forwards;opacity:0}}@keyframes rg{{0%{{opacity:.9;scale:.3}}100%{{opacity:0;scale:1.6}}}}
 .lg{{position:absolute;right:22px;top:10px;}}
@@ -44,8 +44,8 @@ html = f'''<!doctype html><html><head><meta charset="utf-8"><title>onepage</titl
 <div class="ck"><u style="--c:3.2s">✓</u>First reply, in seconds</div><div class="ck"><u style="--c:3.8s">✓</u>One question about their goal</div><div class="ck"><u style="--c:4.4s">✓</u>Suggest a call time</div></div>
 <div class="cd" style="top:344px;height:98px;--a:4.7s"><div class="lb">03 · ASK</div><div class="chat"><span class="b1">What's your goal right now?</span><span class="b2">Grow my client list</span></div></div>
 <div class="cd" style="top:454px;height:112px;--a:6.2s"><div class="ill">VALUES ILLUSTRATIVE</div><div class="lb">04 · RESULT</div><h2>Booked while you sleep</h2><div class="m"><div class="mc o"><small>FIRST REPLY</small><b class="cnt" data-k="mmss" data-t0="6.4" data-t1="7.4" data-to="38">0:00</b></div><div class="mc"><small>CALLS BOOKED</small><b class="cnt" data-k="int" data-t0="6.8" data-t1="7.8" data-to="3">0</b></div></div><div class="meter"><i></i></div></div>
-<div class="foot" style="animation:cin .4s ease 8.0s both"><div class="cb"><span>SPEED</span></div>{logo(34)}</div>
-<div class="fd"></div>{rings}<svg class="cur" viewBox="0 0 24 24"><path d="M3 2l17 8-7 2-3 7z" fill="#1B1B1B" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+<div class="foot" style="animation:cin .4s ease 7.3s both"><div class="cb"><span>SPEED</span></div>{logo(34)}</div>
+{rings}<svg class="cur" viewBox="0 0 24 24"><path d="M3 2l17 8-7 2-3 7z" fill="#1B1B1B" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
 </div><script>
 const A=()=>document.getAnimations?document.getAnimations():[];window.ready=(async()=>{{await document.fonts.ready;A().forEach(a=>a.pause())}})();
 const C=[...document.querySelectorAll('.cnt')],f=(v,k)=>k==='int'?String(Math.round(v)):Math.floor(v/60)+':'+String(Math.floor(v)%60).padStart(2,'0');
