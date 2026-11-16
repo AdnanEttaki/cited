@@ -11,7 +11,9 @@ def cmd_html():
     open(os.path.join(here, "pend.html"), "w").write(open(os.path.join(here, "template.html")).read().replace("{{LOGO}}", logo()))
     S = []
     for k in range(6): X(S, "swish", 0.2 + k, -13, "sfx3")               # pendulum passes, once a second
-    for tt in (0.25, 2.25, 4.25): X(S, "tick2", tt, -11, "sfx3")           # text reveals
+    for tt in (0.25, 1.25, 2.25, 3.25, 4.25, 5.25): X(S, "tick2", tt, -11, "sfx3")   # text appears / erased
+    for k in range(5):
+        X(S, "tick2", 0.2 + k + 0.29, -19, "sfx3"); X(S, "tick2", 0.2 + k + 0.79, -21, "sfx3")  # tick-tock between passes
     X(S, "whoosh", 5.4, -9); X(S, "thud", 5.95, -10, "sfx3"); X(S, "lamp", 6.05, -10, "sfx3")
     for tt in (6.6, 7.7, 8.6): X(S, "swish", tt, -16, "sfx3")             # lamp swings
     X(S, "whoosh", 9.25, -11); X(S, "pop", 9.55, -12); X(S, "ding", 9.62, -13)
