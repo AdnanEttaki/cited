@@ -2,5 +2,9 @@ out/
 assets/
 hookframes/
 ctaframes/
+hookframes2/
+ctaframes2/
 host.html
+host2.html
 timeline_host.json
+timeline_host2.json
