@@ -1,0 +1,13 @@
+{
+ "colors": [
+  "#16171C",
+  "#E5471E",
+  "#EBE4D2"
+ ],
+ "fonts": {
+  "display": "Inter (variable)",
+  "ui": "Playfair Display Italic"
+ },
+ "wordmark": "DM + Setter (Setter in serif italic, accent)",
+ "source": "DMSetter paper style; palette matched to the reference's cream / ink / vermilion"
+}
