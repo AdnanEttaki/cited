@@ -1,0 +1,19 @@
+{
+ "source": "/home/user/cited/video-studio/ref/motion/ref.mp4",
+ "duration": 21.058,
+ "threshold": 0.25,
+ "note": "hard cuts only; seamless transitions (match cuts, morphs, irises) are not counted",
+ "cuts": [
+  7.533,
+  8.133
+ ],
+ "shots": [
+  7.533,
+  0.6,
+  12.925
+ ],
+ "shot_count": 3,
+ "mean_shot_s": 7.019,
+ "median_shot_s": 7.533,
+ "cuts_per_10s": 0.95
+}
