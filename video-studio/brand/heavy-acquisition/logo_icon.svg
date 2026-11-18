@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" rx="28" fill="#FFCD11"/>
+  <g fill="#111111" stroke="none">
+    <!-- tracks -->
+    <rect x="34" y="142" width="108" height="28" rx="14"/>
+    <!-- counterweight + body -->
+    <rect x="34" y="110" width="88" height="30" rx="5"/>
+    <!-- cab -->
+    <path d="M54 110 L54 80 Q54 76 58 76 L90 76 Q94 76 96 80 L108 110 Z"/>
+  </g>
+  <!-- cab window -->
+  <path d="M62 104 L62 85 L86 85 L97 104 Z" fill="#FFCD11"/>
+  <!-- track wheels -->
+  <g fill="#FFCD11"><circle cx="50" cy="156" r="6"/><circle cx="88" cy="156" r="6"/><circle cx="126" cy="156" r="6"/></g>
+  <!-- boom, stick, cylinders -->
+  <g stroke="#111111" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M104 108 L134 50" stroke-width="12"/>
+    <path d="M134 50 L164 104" stroke-width="10"/>
+  </g>
+  <!-- bucket -->
+  <path d="M152 98 L186 94 L181 126 Q168 138 154 124 Z" fill="#111111"/>
+  <g fill="#111111"><path d="M156 126 L155 138 L163 130Z"/><path d="M166 131 L167 142 L174 132Z"/><path d="M176 128 L181 138 L184 124Z"/></g>
+</svg>
